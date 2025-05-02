@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Order Form</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #9370db;
+            --accent-color: #7fffd4;
+            --text-color: #333;
+            --light-color: #fff;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+        
+        .container {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .unicorn-icon {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+        }
+        
+        .error {
+            color: #ff3860;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .confirmation {
+            display: none;
+            background-color: rgba(127, 255, 212, 0.2);
+            border: 2px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .confirmation h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+        
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .rainbow-text {
+            background-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbow 5s linear infinite;
+            background-size: 200% auto;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="unicorn-icon">🦄</div>
+        <h1><span class="rainbow-text">Unicorn Order Form</span></h1>
+        
+        <form id="unicornForm">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+                <div class="error" id="nameError">Please enter your name</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address">
+                <div class="error" id="emailError">Please enter a valid email address</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">Number of Unicorns:</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                <div class="error" id="quantityError">Please select a quantity between 1 and 10</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="color">Preferred Unicorn Color:</label>
+                <select id="color" name="color">
+                    <option value="white">Classic White</option>
+                    <option value="pink">Magical Pink</option>
+                    <option value="blue">Celestial Blue</option>
+                    <option value="rainbow">Rainbow Sparkle</option>
+                    <option value="gold">Golden Shimmer</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="special">Special Requests:</label>
+                <input type="text" id="special" name="special" placeholder="Any special requests for your unicorn?">
+            </div>
+            
+            <button type="submit">Order My Unicorn <span class="sparkle">✨</span></button>
+        </form>
+        
+        <div class="confirmation" id="confirmationMessage">
+            <h2>Thank You for Your Order!</h2>
+            <p id="confirmationDetails"></p>
+            <p>Your magical unicorn(s) will arrive on the next rainbow! <span class="sparkle">🌈</span></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('unicornForm');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            const confirmationDetails = document.getElementById('confirmationDetails');
+            
+            // Form validation and submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Reset error messages
+                document.querySelectorAll('.error').forEach(error => {
+                    error.style.display = 'none';
+                });
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const quantity = document.getElementById('quantity').value;
+                const color = document.getElementById('color').value;
+                const special = document.getElementById('special').value.trim();
+                
+                // Validate inputs
+                let isValid = true;
+                
+                if (name === '') {
+                    document.getElementById('nameError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (email === '' || !isValidEmail(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (quantity < 1 || quantity > 10) {
+                    document.getElementById('quantityError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // If form is valid, show confirmation
+                if (isValid) {
+                    // Hide form and show confirmation
+                    form.style.display = 'none';
+                    confirmationMessage.style.display = 'block';
+                    
+                    // Set confirmation details
+                    confirmationDetails.innerHTML = `
+                        <strong>${name}</strong>, we've received your order for 
+                        <strong>${quantity}</strong> ${color} unicorn${quantity > 1 ? 's' : ''}.
+                        ${special ? `<br>Special request: "${special}"` : ''}
+                        <br>A confirmation has been sent to <strong>${email}</strong>.
+                    `;
+                    
+                    // Add some magic sparkles
+                    addSparkles();
+                }
+            });
+            
+            // Email validation function
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Add sparkle animation to the page
+            function addSparkles() {
+                const container = document.querySelector('.container');
+                for (let i = 0; i < 20; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = `${Math.random() * 100}%`;
+                    sparkle.style.top = `${Math.random() * 100}%`;
+                    sparkle.style.fontSize = `${Math.random() * 20 + 10}px`;
+                    sparkle.style.opacity = '0';
+                    sparkle.style.animation = `sparkleAnimation 2s ease-in-out ${Math.random() * 2}s`;
+                    container.appendChild(sparkle);
+                }
+            }
+            
+            // Add keyup validation for real-time feedback
+            document.getElementById('name').addEventListener('keyup', function() {
+                if (this.value.trim() !== '') {
+                    document.getElementById('nameError').style.display = 'none';
+                }
+            });
+            
+            document.getElementById('email').addEventListener('keyup', function() {
+                if (isValidEmail(this.value.trim())) {
+                    document.getElementById('emailError').style.display = 'none';
+                }
+            });
+            
+            document.getElementById('quantity').addEventListener('change', function() {
+                if (this.value >= 1 && this.value <= 10) {
+                    document.getElementById('quantityError').style.display = 'none';
+                }
+            });
+        });
+        
+        // Add sparkle animation
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes sparkleAnimation {
+                    0% { transform: scale(0); opacity: 0; }
+                    50% { transform: scale(1); opacity: 1; }
+                    100% { transform: scale(0); opacity: 0; }
+                }
+            </style>
+        `);
+    </script>
+</body>
+</html>
