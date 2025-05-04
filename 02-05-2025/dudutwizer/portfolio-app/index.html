@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Todo List</h1>
+            <form id="todo-form">
+                <input 
+                    type="text" 
+                    id="todo-input" 
+                    placeholder="What needs to be done?"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" id="add-button">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        </header>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div class="todo-container">
+            <ul id="todo-list">
+                <!-- Todo items will be added here dynamically -->
+            </ul>
+        </div>
+
+        <div class="info">
+            <div id="items-left">0 items left</div>
+            <button id="clear-completed">Clear completed</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by Claude - AI Assistant</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
