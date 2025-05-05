@@ -1,0 +1,19 @@
+{
+  "name": "finance-dashboard",
+  "version": "1.0.0",
+  "description": "Interactive financial dashboard with data visualization",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Claude (AI Agent)",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^4.3.0",
+    "serve": "^14.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0"
+  }
+}

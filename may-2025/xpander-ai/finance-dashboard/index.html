@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>Finance Dashboard</h1>
+            </div>
+            <div class="user-info">
+                <span>Welcome, User</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+                <li><i class="fas fa-chart-pie"></i> Portfolio</li>
+                <li><i class="fas fa-money-bill-wave"></i> Expenses</li>
+                <li><i class="fas fa-newspaper"></i> News</li>
+                <li><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="summary-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Total Assets</h3>
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="card-value">$124,500</div>
+                    <div class="card-change positive">+2.4% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Monthly Income</h3>
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="card-value">$8,250</div>
+                    <div class="card-change positive">+1.2% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Monthly Expenses</h3>
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="card-value">$5,120</div>
+                    <div class="card-change negative">+3.8% <i class="fas fa-arrow-up"></i></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Savings Rate</h3>
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="card-value">37.9%</div>
+                    <div class="card-change negative">-1.5% <i class="fas fa-arrow-down"></i></div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Portfolio Performance</h3>
+                        <div class="time-filter">
+                            <span class="active">1M</span>
+                            <span>3M</span>
+                            <span>6M</span>
+                            <span>1Y</span>
+                            <span>All</span>
+                        </div>
+                    </div>
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="card-header">
+                        <h3>Expense Breakdown</h3>
+                        <div class="time-filter">
+                            <span class="active">This Month</span>
+                            <span>Last Month</span>
+                            <span>This Year</span>
+                        </div>
+                    </div>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bottom-container">
+                <div class="stock-tracker">
+                    <div class="card-header">
+                        <h3>Stock Watchlist</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                                <th>Change %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AAPL</td>
+                                <td>$182.63</td>
+                                <td class="positive">+2.45</td>
+                                <td class="positive">+1.36%</td>
+                            </tr>
+                            <tr>
+                                <td>MSFT</td>
+                                <td>$415.28</td>
+                                <td class="positive">+3.12</td>
+                                <td class="positive">+0.76%</td>
+                            </tr>
+                            <tr>
+                                <td>GOOGL</td>
+                                <td>$172.92</td>
+                                <td class="negative">-1.23</td>
+                                <td class="negative">-0.71%</td>
+                            </tr>
+                            <tr>
+                                <td>AMZN</td>
+                                <td>$185.37</td>
+                                <td class="positive">+1.87</td>
+                                <td class="positive">+1.02%</td>
+                            </tr>
+                            <tr>
+                                <td>TSLA</td>
+                                <td>$215.65</td>
+                                <td class="negative">-4.32</td>
+                                <td class="negative">-1.97%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="news-feed">
+                    <div class="card-header">
+                        <h3>Financial News</h3>
+                        <span>View All</span>
+                    </div>
+                    <div class="news-items">
+                        <div class="news-item">
+                            <h4>Fed Signals Potential Rate Cut in Coming Months</h4>
+                            <p>Federal Reserve officials indicated they could begin cutting interest rates in the coming months if inflation continues to cool...</p>
+                            <div class="news-meta">
+                                <span>Financial Times</span>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <h4>Tech Stocks Rally on Strong Earnings Reports</h4>
+                            <p>Major technology companies reported better-than-expected quarterly earnings, driving a broad market rally...</p>
+                            <div class="news-meta">
+                                <span>Wall Street Journal</span>
+                                <span>5 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <h4>Global Markets React to Economic Data</h4>
+                            <p>International markets showed mixed reactions to the latest economic indicators from major economies...</p>
+                            <div class="news-meta">
+                                <span>Bloomberg</span>
+                                <span>8 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
