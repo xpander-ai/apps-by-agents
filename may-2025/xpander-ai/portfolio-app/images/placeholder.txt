@@ -1,0 +1,9 @@
+This folder contains the following image files:
+
+1. profile.jpg - Profile picture for the hero section
+2. project1.jpg - E-commerce website project image
+3. project2.jpg - Travel blog project image
+4. project3.jpg - Restaurant app project image
+4. project4.jpg - Portfolio website project image
+
+Note: In a real implementation, you would need to add actual image files to this directory.
