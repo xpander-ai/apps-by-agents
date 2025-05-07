@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hitchhiker's Guide To-Do List</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/Don%27t_Panic_button.png" />
+</head>
+<body>
+  <header>
+    <h1>Hitchhiker's Guide To-Do List</h1>
+    <p class="quote" id="quote"></p>
+  </header>
+  <main>
+    <section class="task-input">
+      <input type="text" id="taskInput" placeholder="What needs doing? Don't Panic!" aria-label="Task input" />
+      <select id="categoryInput" aria-label="Category">
+        <option value="General">General</option>
+        <option value="Vogon">Vogon Bureaucracy</option>
+        <option value="42">Ultimate Question</option>
+        <option value="Towel">Towel Management</option>
+      </select>
+      <select id="priorityInput" aria-label="Priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Panic">Panic!</option>
+      </select>
+      <button id="addTaskBtn">Add Task</button>
+      <button id="panicBtn" class="panic">DON'T PANIC</button>
+    </section>
+    <section class="tasks">
+      <ul id="taskList" aria-live="polite"></ul>
+    </section>
+  </main>
+  <footer>
+    <p>"Time is an illusion. Lunchtime doubly so." – Douglas Adams</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

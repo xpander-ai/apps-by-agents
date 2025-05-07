@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --primary-bg: #001f2b;
+  --secondary-bg: #00394d;
+  --accent: #42d9f4;
+  --highlight: #ffe066;
+  --danger: #e63946;
+  --towel: #f4a261;
+  --font-main: 'Share Tech Mono', monospace;
+  --font-title: 'Orbitron', sans-serif;
+  --radius: 12px;
+}
+
+body {
+  background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+  color: var(--accent);
+  font-family: var(--font-main);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: var(--secondary-bg);
+  padding: 1.5rem 1rem 1rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid var(--highlight);
+}
+
+h1 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 2px;
+  color: var(--highlight);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+.quote {
+  font-style: italic;
+  color: var(--towel);
+  margin-bottom: 0.5rem;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.task-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px #0008;
+}
+
+.task-input input,
+.task-input select {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: none;
+  outline: none;
+  margin-right: 0.5rem;
+}
+
+#addTaskBtn {
+  background: var(--highlight);
+  color: #222;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#addTaskBtn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+#panicBtn.panic {
+  background: var(--danger);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1.2rem;
+  margin-left: 0.5rem;
+  box-shadow: 0 0 10px var(--danger);
+  animation: panicPulse 1.5s infinite alternate;
+  cursor: pointer;
+}
+@keyframes panicPulse {
+  0% { box-shadow: 0 0 10px var(--danger); }
+  100% { box-shadow: 0 0 30px var(--highlight); }
+}
+
+.tasks {
+  width: 100%;
+  max-width: 600px;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task {
+  background: #012b39;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 6px #0006;
+  transition: background 0.2s;
+}
+.task.completed {
+  background: #1a3a3a;
+  color: #aaa;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.task-category {
+  font-size: 0.9rem;
+  color: var(--towel);
+}
+
+.task-priority {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button.complete-btn {
+  background: var(--accent);
+  color: #222;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+button.complete-btn:hover {
+  background: var(--highlight);
+}
+
+button.delete-btn {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+button.delete-btn:hover {
+  background: #b71c1c;
+}
+
+footer {
+  background: var(--secondary-bg);
+  color: var(--towel);
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  border-top: 2px solid var(--highlight);
+}
+
+@media (max-width: 600px) {
+  .task-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tasks {
+    max-width: 100%;
+  }
+}
