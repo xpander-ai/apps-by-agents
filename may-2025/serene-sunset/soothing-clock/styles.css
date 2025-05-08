@@ -1,191 +1,28 @@
-/* Base styles */
-:root {
-    /* Theme colors */
-    --morning-primary: #ffb347;
-    --morning-secondary: #ffcc33;
-    --morning-text: #333333;
-    
-    --afternoon-primary: #87ceeb;
-    --afternoon-secondary: #00bfff;
-    --afternoon-text: #333333;
-    
-    --evening-primary: #ff7e5f;
-    --evening-secondary: #feb47b;
-    --evening-text: #ffffff;
-    
-    --night-primary: #2c3e50;
-    --night-secondary: #4a6572;
-    --night-text: #ffffff;
-    
-    /* Default theme (will be overridden by JS) */
-    --primary-color: var(--morning-primary);
-    --secondary-color: var(--morning-secondary);
-    --text-color: var(--morning-text);
-    
-    /* Other variables */
-    --transition-speed: 2s;
-}
-
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--text-color);
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: background var(--transition-speed) ease;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
+    transition: background 1s linear;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 40px;
-    }
-}
-
-/* Clock styles */
 .clock-container {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.clock {
+    background: rgba(255,255,255,0.15);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    padding: 40px 60px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.time {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.date {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.period {
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding: 5px 15px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-top: 10px;
-}
-
-/* Info panel styles */
-.info-panel {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-.info-item {
-    margin-bottom: 20px;
-}
-
-.info-item h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-.info-item ul {
-    list-style-type: none;
-}
-
-.info-item li {
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-.color-dot {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.color-dot.morning {
-    background: linear-gradient(135deg, var(--morning-primary), var(--morning-secondary));
-}
-
-.color-dot.afternoon {
-    background: linear-gradient(135deg, var(--afternoon-primary), var(--afternoon-secondary));
-}
-
-.color-dot.evening {
-    background: linear-gradient(135deg, var(--evening-primary), var(--evening-secondary));
-}
-
-.color-dot.night {
-    background: linear-gradient(135deg, var(--night-primary), var(--night-secondary));
-}
-
-/* Footer styles */
-footer {
-    margin-top: 30px;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* Theme-specific styles */
-body.morning-theme {
-    --primary-color: var(--morning-primary);
-    --secondary-color: var(--morning-secondary);
-    --text-color: var(--morning-text);
-}
-
-body.afternoon-theme {
-    --primary-color: var(--afternoon-primary);
-    --secondary-color: var(--afternoon-secondary);
-    --text-color: var(--afternoon-text);
-}
-
-body.evening-theme {
-    --primary-color: var(--evening-primary);
-    --secondary-color: var(--evening-secondary);
-    --text-color: var(--evening-text);
-}
-
-body.night-theme {
-    --primary-color: var(--night-primary);
-    --secondary-color: var(--night-secondary);
-    --text-color: var(--night-text);
+#clock {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    letter-spacing: 2px;
 }
