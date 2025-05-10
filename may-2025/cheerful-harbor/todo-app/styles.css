@@ -1,0 +1,113 @@
+/* styles.css - Todo List App */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 24px 24px 24px;
+}
+
+h1 {
+    text-align: center;
+    color: #2d6cdf;
+    margin-bottom: 24px;
+}
+
+#todo-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #dbeafe;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#todo-form button {
+    background: #2d6cdf;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#todo-form button:hover {
+    background: #1e4fa3;
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.delete-btn {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover {
+    background: #d9363e;
+}
+
+@media (max-width: 500px) {
+    .container {
+        max-width: 98vw;
+        padding: 16px 4vw 16px 4vw;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    #todo-input, #todo-form button {
+        font-size: 0.95rem;
+    }
+}
