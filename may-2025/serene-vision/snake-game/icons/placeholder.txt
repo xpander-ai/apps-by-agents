@@ -1,0 +1,17 @@
+This directory should contain the following icon files for PWA support:
+
+- icon-72x72.png
+- icon-96x96.png
+- icon-128x128.png
+- icon-144x144.png
+- icon-152x152.png
+- icon-192x192.png
+- icon-384x384.png
+- icon-512x512.png
+
+These icons should be created with the Snake Game theme, using the primary color (#4CAF50) and featuring a simple snake design.
+
+You can generate these icons using tools like:
+- Favicon Generator (https://realfavicongenerator.net/)
+- PWA Asset Generator (https://github.com/onderceylan/pwa-asset-generator)
+- Figma or Adobe XD for custom designs
