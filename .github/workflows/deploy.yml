@@ -20,20 +20,31 @@ jobs:
 
       - name: Generate links and inject into template
         run: |
-          LINKS=$(find . -type f -name index.html ! -path "./index.html" | while read path; do
+          # Collect project index paths and generate list items
+          LINK_PATHS=$(find . -type f -name index.html ! -path "./index.html")
+          LINKS=$(echo "$LINK_PATHS" | while read path; do
             dir=$(dirname "$path")
             title=$(basename "$dir")
             href="${dir#./}/"
             echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
           done)
+          PROJECT_COUNT=$(echo "$LINK_PATHS" | wc -l)
 
-          # Safely inject using awk — preserves formatting and avoids sed errors
+          # Safely inject links into projects.html template
           awk -v links="$LINKS" '
             /{{links}}/ {
               gsub("{{links}}", links)
             }
             { print }
           ' projects.html > projects.tmp.html && mv projects.tmp.html projects.html
+
+          # Safely inject project count into index.html template
+          awk -v count="$PROJECT_COUNT" '
+            /{{project_count}}/ {
+              gsub("{{project_count}}", count)
+            }
+            { print }
+          ' index.html > index.tmp.html && mv index.tmp.html index.html
 
       - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
