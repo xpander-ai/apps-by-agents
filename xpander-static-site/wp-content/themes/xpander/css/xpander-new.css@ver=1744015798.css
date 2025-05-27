@@ -1,0 +1,736 @@
+html {
+	font-size: 16px;
+}
+body {
+	font-size: 18px;
+}
+.admin-bar co-pilot,
+.admin-bar .preloader {
+	display: none !important;
+}
+.preloader.p-hide {
+	display: none !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	position: absolute !important;
+	top: -9999px !important;
+}
+
+a.x-btn,
+button.x-btn,
+.x-btn {
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: -0.02rem;
+	line-height: 144%;
+	height: 52px;
+	padding: 0px 28px;
+	border-radius: 8px;
+	background: #753cff;
+	transition: 0.5s;
+	border: 1px solid transparent;
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+}
+a.x-btn:hover,
+button.x-btn:hover {
+	background-color: #000;
+	border-color: hsla(0, 0%, 100%, 0.12);
+}
+
+body .hidden {
+	display: none !important;
+}
+body.page-template-default main#wp--skip-link--target {
+	padding-top: 4rem;
+}
+
+.page-template.page-template-about h1.block-hero__title.words.lines.splitting,
+.page-template.page-template-careers h1.block-hero__title.words.lines.splitting {
+	padding-inline: 2rem;
+	font-size: 6.75rem;
+	letter-spacing: -0.405rem;
+	line-height: 0.88;
+	color: var(--wp--preset--color--white);
+	font-weight: 400;
+}
+.page-template.page-template-about h2,
+.page-template.page-template-careers h2 {
+	font-size: 4rem;
+	letter-spacing: -0.24rem;
+	line-height: 0.88;
+	font-weight: 400;
+}
+.page-template.page-template-about main.wp-block-group,
+.page-template.page-template-careers main.wp-block-group {
+	background-color: #fff;
+}
+.about-content {
+	padding-inline: 3rem;
+	color: #000;
+}
+.about-content h2 {
+	text-transform: uppercase;
+	margin-bottom: 8rem;
+}
+.about-content p {
+	font-size: 28px;
+	font-weight: 400;
+	line-height: 27.44px;
+	letter-spacing: -0.05em;
+}
+.about-content img {
+	display: block;
+	margin-top: 10rem;
+	margin-bottom: 9rem;
+}
+.bottom-text {
+	margin-bottom: 6rem;
+}
+.bottom-text p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 14.08px;
+	letter-spacing: -0.05em;
+}
+.x-logo {
+	text-align: center;
+	margin-bottom: 8rem;
+}
+.management {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 700px;
+	justify-content: space-between;
+	margin: auto;
+	margin-bottom: 80px;
+	gap: 25px;
+}
+.team-member img {
+	margin: unset;
+	display: block;
+	height: 256px;
+	width: 256px;
+	object-fit: cover;
+	margin-inline: auto;
+	margin-bottom: 30px;
+}
+.team-member {
+	text-align: center;
+}
+.team-member-name {
+	font-size: 28px;
+	font-weight: 400;
+	line-height: 24.64px;
+	letter-spacing: -0.05em;
+	text-transform: uppercase;
+}
+.team-member-title {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 14.08px;
+	letter-spacing: -0.05em;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+
+/* Blog and post css */
+.blog .block-hero__shape,
+body.archive.category .block-hero__shape,
+body.search.search-results .block-hero__shape,
+body.archive.author .block-hero__shape {
+	display: none;
+}
+.block-hero__title-wrapper.has-global-padding.wp-block-block {
+	padding-block: 3rem;
+}
+section.block-acf.block-post-grid.alignwide {
+	margin-top: 3rem !important;
+}
+body.archive.category,
+body.search.search-results,
+body.archive.author {
+	background-color: #fff;
+}
+body.archive.category section.block-acf.block-hero.alignwide.-type-title,
+body.search.search-results section.block-acf.block-hero.alignwide,
+body.archive.author section.block-acf.block-hero.alignwide {
+	margin: unset !important;
+}
+body.archive.author footer.site-footer,
+body.archive.author footer.footer.wp-block-template-part {
+	margin-top: unset;
+}
+
+.block-post-grid__filters {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 20px;
+}
+.single .block-post-grid__filters {
+	display: none;
+}
+.filter-buttons {
+	display: flex;
+	gap: 10px;
+}
+.filter-button {
+	padding: 10px 19px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #555;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+.filter-button:hover {
+	background-color: #f0f0f0;
+}
+.filter-button.active {
+	color: #fff;
+	background-color: var(--wp--preset--color--purple-300);
+	border-color: var(--wp--preset--color--purple-300);
+}
+.search-bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.search-bar input {
+	width: 250px;
+	font-size: 14px;
+	letter-spacing: -0.28px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 8px;
+	transition: all 0.3s ease;
+	background-image: url(../assets/icons/search.svg);
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	padding-left: 40px;
+	padding-right: 15px;
+	line-height: 1;
+	padding-top: 12px;
+	padding-bottom: 9px;
+}
+.search-bar input:focus {
+	outline: none;
+	border-color: var(--wp--preset--color--purple-300);
+}
+.search-bar input::placeholder {
+	color: #636363;
+	font-size: 14px;
+}
+.block-post-grid__content {
+	margin-top: 4rem;
+}
+
+body.single.single-post .block-post-hero__full-wrapper {
+	padding-top: 5rem;
+}
+body.single.single-post .block-post-hero__container.has-global-padding {
+	gap: 3rem;
+}
+body.single.single-post .words {
+	transform: none !important;
+	translate: none !important;
+	rotate: none !important;
+	scale: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	transform: none !important;
+}
+.table-of-contents ul {
+	gap: unset;
+}
+.toc-block ul li a.toc-link {
+	line-height: 1.3;
+}
+
+.wp-block-group.post-block-content__sidebar-wrapper.is-layout-flow.wp-block-group-is-layout-flow .wp-block-group.has-global-padding.is-layout-constrained.wp-block-group-is-layout-constrained {
+	padding: unset;
+}
+.block-post-hero__title {
+	max-width: unset;
+}
+h3.h6.block-post__title-heading {
+	font-family: var(--wp--preset--font-family--interregular);
+}
+
+.block-post-grid__container h2 {
+	display: none;
+}
+
+/* Remove header title loading animation - START */
+.page-template-about h1.block-hero__title,
+.page-template-careers h1.block-hero__title {
+	padding-inline: 2rem;
+	font-size: 6.75rem;
+	letter-spacing: -0.405rem;
+	line-height: 0.88;
+	color: var(--wp--preset--color--white);
+	font-weight: 400;
+}
+/* END */
+
+body .post-block-content__text.wp-block-group-is-layout-flow p:first-child {
+	margin-top: unset;
+}
+
+span.whitespace {
+	display: inline-block;
+	width: 0.45ch;
+}
+.single span.whitespace {
+	width: 0.4ch;
+}
+
+main#wp--skip-link--target {
+	margin-block-start: unset;
+}
+.blog .block-hero__title-wrapper.has-global-padding.wp-block-block {
+	padding-top: 5rem;
+}
+
+body.page-template-default main#wp--skip-link--target {
+	padding-top: 6rem;
+}
+
+body .video-placeholder-normal {
+	width: 50px !important;
+	height: 50px !important;
+	background-size: contain;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+body p.video-placeholder-text-normal {
+	font-size: 0.8rem;
+	line-height: 1;
+	position: absolute;
+	right: 0;
+	bottom: 38px;
+	opacity: 0.9;
+}
+.home div#hubspot-messages-iframe-container {
+	display: none !important;
+}
+
+.for-desktop {
+	display: block;
+}
+.for-mobile {
+	display: none;
+}
+
+/* AR - So much empty space - please remove some */
+section.block-acf.block-connection.alignfull header.block-connection__header {
+	margin-bottom: 5rem;
+}
+
+/* AR - make it so the ‘answer’ text is a bit bigger */
+.block-faq__content-container {
+	max-width: 95rem;
+}
+
+/* AR - more space between the top bar and the ‘Terms of Service’ */
+body.page-template-default main#wp--skip-link--target,
+body.privacy-policy.page-template main.wp-block-group.is-layout-flow.wp-block-group-is-layout-flow {
+	padding-top: 7rem;
+	padding-inline: 2rem;
+}
+/* AR - Blog fixes */
+section.block-acf.block-post-grid.alignwide {
+	max-width: 1500px;
+}
+.block-post-grid .block-post__author {
+	margin: unset;
+}
+h3.h6.block-post__title-heading {
+	min-height: 72px;
+}
+.block-post-grid__content {
+	gap: 3rem 2rem;
+}
+.block-post-grid .block-post__content {
+	min-height: unset;
+}
+.block-post-grid .block-post {
+	padding: 1rem;
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.block-post__content {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+.block-post__title {
+	flex-grow: 1;
+}
+.block-post__author {
+	margin-top: auto;
+}
+a.block-post__link {
+	display: block;
+	height: 100%;
+}
+.block-post-grid .block-post__content {
+	min-height: 250px;
+}
+article.block-post:hover {
+	background-color: #f7f7f8;
+}
+.block-post-grid .block-post__image img {
+	height: 200px;
+	object-fit: cover;
+	position: relative;
+}
+.block-post-grid .block-post__image {
+	padding-bottom: unset;
+}
+/* .entry-content.wp-block-post-content.has-global-padding.is-layout-constrained.wp-block-post-content-is-layout-constrained {
+	padding: unset;
+} */
+section.wp-block-custom-post-block-content.post-block-content {
+	margin: unset !important;
+	max-width: 95rem !important;
+	margin-inline: auto !important;
+}
+.wp-block-group.post-block-content__text.is-layout-flow.wp-block-group-is-layout-flow {
+	max-width: unset;
+}
+.wp-block-group.has-global-padding.is-layout-constrained.is-layout-flow.wp-block-group-is-layout-flow section.block-acf.block-post-grid.alignwide {
+	max-width: 95rem;
+}
+.wp-block-group.post-block-content__sidebar.is-layout-flow.wp-block-group-is-layout-flow {
+	max-width: 25rem;
+}
+body.page-template-default .wp-block-group.has-global-padding.is-layout-constrained.wp-block-group-is-layout-constrained,
+body.privacy-policy.page-template .wp-block-group.has-global-padding.is-layout-constrained.wp-block-group-is-layout-constrained {
+	padding: unset;
+}
+
+form#hubspot-form {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+}
+label.subscribe-title {
+	color: #fff;
+	font-family: Inter;
+	font-size: 1.125rem;
+	font-weight: 400;
+	line-height: 144%;
+	display: block;
+	margin-bottom: 20px;
+}
+form#hubspot-form #email {
+	color: #a3a3a3;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 144%;
+	padding: 13px 16px;
+	border-radius: 8px;
+	border: 1px solid #434346;
+	background: #000;
+	width: 269px;
+	max-width: unset;
+}
+p#status-message {
+	font-size: 16px;
+	max-width: unset;
+	margin-top: 0.5rem;
+	color: #fff;
+}
+button.subscribe-button {
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 144%;
+	letter-spacing: -0.32px;
+	height: 44px;
+	padding: 0px 20px;
+	border-radius: 8px;
+	background: #753cff;
+	transition: 0.5s;
+	border: unset;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+button.subscribe-button:hover {
+	background: #000;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.block-post-grid .block-post a.block-post__link {
+	text-decoration: none;
+}
+.block-post-grid .block-post__author-info {
+	color: hsla(0, 0%, 64%, 0.902);
+}
+
+form#hubspot-form #email:focus-visible {
+	outline: 1px solid #753cff;
+}
+ul.site-header__menu.menu {
+	gap: 10rem;
+}
+
+co-pilot a {
+	display: none;
+}
+
+ul.site-header__menu.menu {
+	gap: 4rem;
+	justify-content: space-between;
+}
+.site-header__main {
+	gap: 20rem;
+}
+
+ol.wp-block-list.link-list {
+	display: flex;
+	flex-flow: column;
+}
+ol > li > strong,
+.simple-content > ol.wp-block-list.link-list > li::marker {
+	font-size: 18px;
+}
+ol.wp-block-list.link-list strong,
+ol.wp-block-list.link-list li {
+	margin: unset;
+	font-size: 18px;
+}
+ol.wp-block-list.link-list {
+	display: flex;
+	flex-flow: column;
+	gap: 0.5rem;
+	margin-bottom: 3.75rem;
+}
+ol.wp-block-list.link-list strong a {
+	color: #753cff;
+}
+
+@media screen and (max-width: 1442px) {
+	.site-header__main {
+		gap: 10rem;
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	.block-post-grid .block-post__content {
+		min-height: 280px;
+	}
+	.site-header__main {
+		gap: 5rem;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.wp-block-group.post-block-content__sidebar.is-layout-flow.wp-block-group-is-layout-flow {
+		max-width: unset;
+	}
+	.block-post-grid .block-post__content {
+		min-height: unset;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.for-desktop {
+		display: none;
+	}
+	.for-mobile {
+		display: block;
+	}
+	/* Remove header title loading animation - START */
+	.page-template.page-template-about h1.block-hero__title,
+	.page-template.page-template-careers h1.block-hero__title {
+		font-size: 3rem;
+	}
+	/* END */
+	section.block-acf.block-hero.alignwide.-type-title {
+		overflow: hidden;
+	}
+	.page-template.page-template-about h2,
+	.page-template.page-template-careers h2 {
+		font-size: 3rem;
+		margin-bottom: 6rem;
+		margin-bottom: 3rem;
+	}
+	.about-content img {
+		margin-top: 3rem;
+		margin-bottom: 2rem;
+	}
+
+	.team-member-title {
+		margin-top: unset;
+		font-size: 0.6rem;
+	}
+	.team-member-name {
+		font-size: 0.6rem;
+	}
+	.team-member img {
+		margin-top: unset;
+		height: auto;
+		width: auto;
+		margin-bottom: 0.5rem;
+	}
+	.about-content p {
+		font-size: 1rem;
+	}
+	.bottom-text p {
+		font-size: 0.6rem;
+		line-height: 1.3;
+	}
+	.management {
+		margin-bottom: 2rem;
+	}
+	.x-logo {
+		margin-bottom: 5rem;
+	}
+
+	section.block-acf.block-newsletter.alignfull.has-global-padding {
+		max-width: 100%;
+	}
+
+	/* Blog and post css */
+	.wp-block-group.has-global-padding.is-layout-constrained.wp-block-group-is-layout-constrained {
+		padding: unset;
+	}
+	.block-post-grid__container,
+	section.block-acf.block-hero.alignwide.-type-title,
+	.filter-buttons,
+	.search-bar {
+		padding-right: var(--wp--style--root--padding-right);
+		padding-left: var(--wp--style--root--padding-left);
+	}
+	.filter-buttons {
+		flex-flow: wrap;
+		width: 100%;
+		background-color: var(--wp--preset--color--purple-300);
+		padding-bottom: 1rem;
+	}
+	.block-post-grid__filters {
+		flex-flow: column;
+		align-items: start;
+		gap: 1rem;
+	}
+	.search-bar,
+	input#post-search {
+		width: 100%;
+	}
+	section.block-acf.block-post-grid.alignwide {
+		margin-top: unset !important;
+	}
+	.filter-button {
+		color: #fff;
+		background-color: unset;
+		border-color: rgba(0, 0, 0, 0.15);
+	}
+	.filter-button.active {
+		background-color: #fff;
+		color: var(--wp--preset--color--purple-300);
+	}
+
+	.block-post-hero__title h1 {
+		font-size: 1.7rem !important;
+	}
+	.block-post-hero__title {
+		margin-bottom: unset;
+	}
+	body.single.single-post .block-post-hero__container.has-global-padding {
+		gap: 1rem;
+		min-height: unset;
+	}
+
+	.words span.whitespace:last-child {
+		display: none;
+	}
+
+	section.block-acf.block-parallax.alignfull {
+		margin-inline: unset;
+	}
+
+	body.privacy-policy .entry-content,
+	body.page-template-default main#wp--skip-link--target {
+		/* padding-top: 2rem; */
+		padding: unset;
+	}
+
+	/* AR - mobile - the text here cuts off in odd places  */
+	h2.block-animation__title {
+		max-width: 100%;
+	}
+
+	/* AR - So much empty space - please remove some */
+	section.block-acf.block-connection.alignfull header.block-connection__header {
+		margin-bottom: 1rem;
+	}
+
+	/* AR - Blog fixes */
+	section.block-acf.block-parallax.alignfull {
+		margin: unset;
+	}
+	.block-post-grid__content {
+		gap: 1rem;
+	}
+	.block-post-grid__content {
+		margin-top: 1rem;
+	}
+	article.block-post {
+		padding: unset;
+	}
+	.block-post-grid .block-post__content {
+		padding: 1rem;
+	}
+	.filter-button {
+		padding: 0.5rem 1rem;
+	}
+	section.block-acf.block-newsletter.alignfull.has-global-padding {
+		margin: unset;
+	}
+	body.page-template-default main#wp--skip-link--target,
+	body.privacy-policy.page-template main.wp-block-group.is-layout-flow.wp-block-group-is-layout-flow {
+		padding-top: 6rem;
+		padding-inline: 2rem;
+	}
+	body.page-template-default main#wp--skip-link--target .entry-content.wp-block-post-content.has-global-padding.is-layout-constrained.wp-block-post-content-is-layout-constrained {
+		padding: unset;
+	}
+
+	label.subscribe-title {
+		font-size: 16px;
+	}
+	form#hubspot-form {
+		flex-flow: column;
+		gap: 10px;
+		align-items: start;
+	}
+	button.subscribe-button {
+		width: 100%;
+		height: 40px;
+	}
+	form#hubspot-form #email {
+		width: 100%;
+		padding: 7px 16px;
+	}
+	ul.site-header__menu.menu {
+		gap: 1rem;
+	}
+
+	.home section.block-acf.block-parallax.alignfull {
+		margin-right: calc(var(--wp--style--root--padding-right) * -1);
+		margin-left: calc(var(--wp--style--root--padding-left) * -1);
+	}
+}

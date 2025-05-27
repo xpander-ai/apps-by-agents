@@ -1,0 +1,19 @@
+if (!document.cookie.includes("preloaderShown=true")) {
+	document.cookie = "preloaderShown=true; path=/; max-age=1200"; // Cookie expires after 20 minutes
+}
+
+window.addEventListener("load", () => {
+	const isHeadless = navigator.webdriver || /HeadlessChrome/.test(navigator.userAgent);
+	const isGoogleBot = /Googlebot|AdsBot|APIs-Google/i.test(navigator.userAgent);
+
+	if (!isHeadless && !isGoogleBot) {
+		setTimeout(() => {
+			const event = new MouseEvent("mousemove", {
+				view: window,
+				bubbles: true,
+				cancelable: true,
+			});
+			document.dispatchEvent(event);
+		}, 100);
+	}
+});

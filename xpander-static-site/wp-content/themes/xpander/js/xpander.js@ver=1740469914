@@ -1,0 +1,140 @@
+jQuery(document).ready(function ($) {
+	var currentFilter = "all";
+
+	$(".filter-button").on("click", function () {
+		currentFilter = $(this).data("filter");
+		$(".filter-button").removeClass("active");
+		$(this).addClass("active");
+
+		if (currentFilter === "all") {
+			$("#post-search").val("");
+			$(".block-post").show();
+		} else {
+			$("#post-search").val("");
+			$(".block-post").hide();
+			$("." + currentFilter).show();
+		}
+	});
+
+	$("#post-search").on("keyup", function () {
+		var searchValue = $(this).val().toLowerCase();
+		$(".block-post").each(function () {
+			var title = $(this).find(".block-post__title-heading").text().toLowerCase();
+			var matchesCategory = currentFilter === "all" || $(this).hasClass(currentFilter);
+
+			if (matchesCategory && title.includes(searchValue)) {
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	});
+
+	if ($(window).width() <= 768) {
+		$("p").each(function () {
+			if ($(this).html().trim() === "&nbsp;") {
+				$(this).hide();
+			}
+		});
+	}
+
+	$("#hubspot-form").submit(function (event) {
+		event.preventDefault();
+
+		var email = $("#email").val();
+		var hsPortalId = "46490851";
+		var formId = "19080771-f869-475e-a2eb-7377f0328f0a";
+		var formUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${formId}`;
+
+		var requestBody = {
+			fields: [{ name: "email", value: email }],
+		};
+
+		$.ajax({
+			url: formUrl,
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(requestBody),
+			success: function (response) {
+				$("#status-message").text("You have successfully subscribed!");
+				$("#hubspot-form")[0].reset();
+			},
+			error: function (error) {
+				$("#status-message").text("Subscription failed. Please try again.").css("color", "red");
+			},
+		});
+	});
+
+	$("#cv-upload").change(function () {
+		var fileName = $(this).val().split("\\").pop();
+		if (fileName) {
+			$(".cv-up-text").html(fileName);
+			$(".cv-upload-label").css("color", "#000");
+			$(".error-message").remove();
+		}
+	});
+
+	$("#job-application-form").submit(function (event) {
+		event.preventDefault();
+
+		$(".error-message").remove(); // Clear previous error messages
+
+		var firstName = $("#first-name").val().trim();
+		var lastName = $("#last-name").val().trim();
+		var email = $("#email").val().trim();
+		var cvFile = $("#cv-upload")[0].files[0];
+
+		var hasError = false;
+
+		// Validate fields
+		if (firstName === "") {
+			$("#first-name").after('<span class="error-message">Please enter your first name</span>');
+			hasError = true;
+		}
+		if (lastName === "") {
+			$("#last-name").after('<span class="error-message">Please enter your last name</span>');
+			hasError = true;
+		}
+		if (email === "") {
+			$("#email").after('<span class="error-message">Please enter your email</span>');
+			hasError = true;
+		}
+		if (!cvFile) {
+			$(".cv-upload-label").after('<span class="error-message">Please upload your CV</span>');
+			hasError = true;
+		}
+
+		// Stop form submission if validation fails
+		if (hasError) {
+			return;
+		}
+
+		var hsPortalId = "46490851";
+		var formId = "2cd007eb-ae6f-4bc0-a60d-05f0eb1793f1";
+		var formUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${hsPortalId}/${formId}`;
+
+		var formData = new FormData();
+		formData.append("firstname", firstName);
+		formData.append("lastname", lastName);
+		formData.append("email", email);
+		formData.append("cv_file", cvFile);
+
+		$.ajax({
+			url: formUrl,
+			type: "POST",
+			enctype: "multipart/form-data",
+			contentType: false,
+			processData: false,
+			data: formData,
+			success: function (response) {
+				$("#status-message").text("Your application has been submitted!");
+				$("#job-application-form")[0].reset();
+				$(".cv-up-text").html("Upload your CV here");
+			},
+			error: function (error) {
+				$("#status-message").text("Submission failed. Please try again.").css("color", "red");
+				console.log(error);
+			},
+		});
+	});
+});

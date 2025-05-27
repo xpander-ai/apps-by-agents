@@ -1,0 +1,115 @@
+html {
+	font-size: 16px;
+}
+body {
+	font-size: 18px;
+}
+.page-template-simple h1.block-hero__title {
+	padding-inline: 2rem;
+	font-size: 6.75rem;
+	letter-spacing: -0.405rem;
+	line-height: 0.88;
+	color: #fff;
+	font-weight: 400;
+	max-width: 46.625rem;
+}
+.page-template-simple main.wp-block-group {
+	background-color: #fff;
+}
+body .block-hero.-type-title .block-hero__shape {
+	min-height: 8.75rem;
+}
+body .block-hero__title-wrapper.has-global-padding.wp-block-block {
+	padding-bottom: 9rem;
+}
+section.block-acf.block-hero.alignwide.-type-title {
+	margin-bottom: unset !important;
+}
+.simple-content {
+	max-width: calc(1600px + 2rem);
+	margin-inline: auto;
+	padding-inline: 2rem;
+	padding-top: 5rem;
+	padding-bottom: 4rem;
+}
+.simple-content p {
+	color: #636363;
+	font-size: 1.125rem;
+	line-height: 144%;
+	letter-spacing: -0.01125rem;
+	margin-bottom: 3.75rem;
+}
+.simple-content p:first-child {
+	margin-top: unset;
+}
+ol > li > strong,
+.simple-content > ol.wp-block-list > li::marker {
+	color: #0c0b0d;
+	font-size: 1.75rem;
+	line-height: 124%;
+	letter-spacing: -0.0875rem;
+	margin-bottom: 2rem;
+	display: block;
+	font-weight: 400;
+}
+ol > li,
+ol > li > ol > li > strong {
+	color: #636363;
+	font-size: 1.125rem;
+	line-height: 144%;
+	letter-spacing: -0.01125rem;
+}
+ol > li > ol > li > strong {
+	display: unset;
+}
+ol.wp-block-list {
+	padding-left: 1rem;
+	margin: unset;
+}
+.simple-content > ol.wp-block-list > li ol.wp-block-list {
+	margin-bottom: 3.75rem;
+}
+ol.wp-block-list li h5 {
+	margin-bottom: 3.75rem !important;
+}
+
+@media screen and (max-width: 768px) {
+	.page-template-simple h1.block-hero__title {
+		font-size: 3.375rem;
+		font-weight: 400;
+		line-height: 90%;
+		letter-spacing: -0.2025rem;
+		text-transform: uppercase;
+		padding: unset;
+	}
+	.simple-content {
+		padding-top: 1.25rem;
+		padding-inline: 1.25rem;
+	}
+	.simple-content p {
+		font-size: 1rem;
+		letter-spacing: -0.01rem;
+		margin-bottom: 2.5rem;
+	}
+	ol > li > strong,
+	.simple-content > ol.wp-block-list > li::marker {
+		font-size: 1.25rem;
+		letter-spacing: -0.0625rem;
+		margin-bottom: 1.25rem;
+	}
+	body ol > li,
+	body ol > li.has-medium-font-size,
+	body ol > li > ol > li > strong {
+		font-size: 1rem !important;
+		letter-spacing: -0.01rem !important;
+	}
+	.simple-content > ol.wp-block-list > li ol.wp-block-list {
+		margin-bottom: 3.75rem;
+		padding-left: 0.5rem;
+		margin-bottom: 2.5rem;
+	}
+	ol.wp-block-list li h5 {
+		font-size: 1rem !important;
+		margin-bottom: 2.5rem !important;
+	}
+}
