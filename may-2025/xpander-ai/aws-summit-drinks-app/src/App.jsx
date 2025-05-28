@@ -3,6 +3,7 @@ import AppHeader from './components/Header'
 import DrinkSpotCard from './components/DrinkSpotCard'
 import drinkSpots from './data/drinkSpots'
 import { Grid } from '@cloudscape-design/components'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           ))}
         </Grid>
       </div>
+      <Footer />
     </>
   )
 }
