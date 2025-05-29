@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .app {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    #todo-input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+    #add-btn {
+      padding: 10px 15px;
+      border: none;
+      background: #6a11cb;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #add-btn:hover {
+      background: #5a0fb9;
+    }
+    #todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .todo-item.completed .text {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    .text {
+      flex: 1;
+      margin: 0 10px;
+      word-break: break-word;
+    }
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: #c0392b;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .remove-btn:hover {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Todo List</h1>
+    <div class="input-group">
+      <input id="todo-input" type="text" placeholder="Add a new todo">
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="todo-list"></ul>
+  </div>
+  <script>
+    const todoInput = document.getElementById('todo-input');
+    const addBtn = document.getElementById('add-btn');
+    const todoList = document.getElementById('todo-list');
+
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+    function saveTodos() {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+
+    function renderTodos() {
+      todoList.innerHTML = '';
+      todos.forEach(todo => {
+        const li = document.createElement('li');
+        li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todo.completed;
+        checkbox.addEventListener('change', () => {
+          todo.completed = checkbox.checked;
+          saveTodos();
+          renderTodos();
+        });
+
+        const span = document.createElement('span');
+        span.className = 'text';
+        span.textContent = todo.text;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.addEventListener('click', () => {
+          todos = todos.filter(item => item.id !== todo.id);
+          saveTodos();
+          renderTodos();
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(removeBtn);
+        todoList.appendChild(li);
+      });
+    }
+
+    addBtn.addEventListener('click', () => {
+      const text = todoInput.value.trim();
+      if (text) {
+        todos.push({ id: Date.now(), text, completed: false });
+        saveTodos();
+        renderTodos();
+        todoInput.value = '';
+      }
+    });
+
+    todoInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') addBtn.click();
+    });
+
+    renderTodos();
+  </script>
+</body>
+</html>
