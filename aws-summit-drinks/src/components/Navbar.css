@@ -1,0 +1,15 @@
+.navbar {
+  background-color: #232f3e;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+}
+.navbar__logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+.navbar__logo span {
+  color: #ff9900;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
