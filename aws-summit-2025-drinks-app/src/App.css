@@ -1,0 +1,73 @@
+/* Global container */
+.App {
+  text-align: center;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--aws-dark-blue);
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.5rem;
+  color: var(--aws-orange);
+  font-weight: 600;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Hero section */
+.hero {
+  padding: 4rem 2rem;
+  background-color: var(--aws-orange);
+  color: #ffffff;
+}
+.hero h1 {
+  margin-bottom: 1rem;
+}
+
+/* Locations list */
+.locations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+.location-card {
+  border: 1px solid var(--aws-dark-blue);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
+}
+.location-card h2 {
+  margin-top: 0;
+  color: var(--aws-dark-blue);
+}
+.location-card p {
+  color: #333333;
+}
+.location-card a {
+  color: var(--aws-orange);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--aws-dark-blue);
+  color: #ffffff;
+  padding: 1rem;
+}

@@ -1,0 +1,17 @@
+/* Global styles and CSS variables */
+:root {
+  --aws-orange: #ff9900;
+  --aws-dark-blue: #252f3e;
+  --font-family: 'Open Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  color: var(--aws-dark-blue);
+}
