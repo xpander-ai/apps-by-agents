@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator App</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="calculator">
-    <input type="text" class="display" disabled />
+    <div class="display" id="display">0</div>
     <div class="buttons">
-      <button class="btn clear">C</button>
-      <button class="btn backspace">←</button>
-      <button class="btn operator">%</button>
-      <button class="btn operator">/</button>
-      <button class="btn number">7</button>
-      <button class="btn number">8</button>
-      <button class="btn number">9</button>
-      <button class="btn operator">*</button>
-      <button class="btn number">4</button>
-      <button class="btn number">5</button>
-      <button class="btn number">6</button>
-      <button class="btn operator">-</button>
-      <button class="btn number">1</button>
-      <button class="btn number">2</button>
-      <button class="btn number">3</button>
-      <button class="btn operator">+</button>
-      <button class="btn number">0</button>
-      <button class="btn decimal">.</button>
-      <button class="btn equals">=</button>
+      <button data-action="clear" class="action">C</button>
+      <button data-action="backspace" class="action">⌫</button>
+      <button data-action="operator">/</button>
+      <button data-action="operator">*</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button data-action="operator">-</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button data-action="operator">+</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button data-action="equals" class="action">=</button>
+      <button>0</button>
+      <button>.</button>
     </div>
   </div>
   <script src="script.js"></script>
