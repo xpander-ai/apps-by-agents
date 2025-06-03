@@ -4,7 +4,7 @@ A monorepo containing the initial project structure for the Boxing Combo App MVP
 
 ## Tech Stack
 
-- Frontend: Vanilla JavaScript, HTML, CSS
+- Frontend: React, Vite
 - Backend: Node.js, Express
 
 ## Planned Features

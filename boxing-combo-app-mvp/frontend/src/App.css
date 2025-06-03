@@ -1,0 +1,15 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.combo-display {
+  margin-top: 1rem;
+}
