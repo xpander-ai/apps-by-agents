@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPC Operator UI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <style>
+    body { margin: 0; font-family: Roboto, sans-serif; }
+    #root { padding: 16px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@emotion/react@11/umd/emotion-react.umd.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@emotion/styled@11/umd/emotion-styled.umd.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@mui/material@5/umd/material-ui.development.js" crossorigin></script>
+  <script>
+    const { useState, useEffect } = React;
+    const {
+      AppBar, Toolbar, Typography, Container, Box, TextField, Button, Table, TableBody,
+      TableCell, TableContainer, TableHead, TableRow, Paper, Switch, FormControlLabel
+    } = MaterialUI;
+
+    function App() {
+      const [jobName, setJobName] = useState('');
+      const [image, setImage] = useState('');
+      const [command, setCommand] = useState('');
+      const [cpu, setCpu] = useState('');
+      const [memory, setMemory] = useState('');
+      const [jobs, setJobs] = useState([]);
+      const [adminMode, setAdminMode] = useState(false);
+      const [nodes, setNodes] = useState([]);
+      const [pods, setPods] = useState([]);
+
+      const fetchJobs = () => {
+        fetch('/api/jobs')
+          .then(res => res.json())
+          .then(data => setJobs(data))
+          .catch(() => setJobs([]));
+      };
+
+      const fetchCluster = () => {
+        fetch('/api/nodes')
+          .then(res => res.json())
+          .then(data => setNodes(data))
+          .catch(() => setNodes([]));
+        fetch('/api/pods')
+          .then(res => res.json())
+          .then(data => setPods(data))
+          .catch(() => setPods([]));
+      };
+
+      useEffect(() => {
+        fetchJobs();
+      }, []);
+
+      useEffect(() => {
+        if (adminMode) {
+          fetchCluster();
+        }
+      }, [adminMode]);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch('/api/jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jobName, image, command: command.split(' '), resources: { cpu, memory } })
+        })
+          .then(() => {
+            setJobName(''); setImage(''); setCommand(''); setCpu(''); setMemory('');
+            fetchJobs();
+          })
+          .catch(console.error);
+      };
+
+      return (
+        React.createElement(React.Fragment, null,
+          React.createElement(AppBar, { position: "static" },
+            React.createElement(Toolbar, null,
+              React.createElement(Typography, { variant: "h6" }, "HPC Operator UI"),
+              React.createElement(Box, { sx: { flexGrow: 1 } }),
+              React.createElement(FormControlLabel, {
+                control: React.createElement(Switch, {
+                  checked: adminMode,
+                  onChange: (e) => setAdminMode(e.target.checked)
+                }),
+                label: "Admin Mode"
+              })
+            )
+          ),
+          React.createElement(Container, { sx: { mt: 4 } },
+            React.createElement(Typography, { variant: "h5" }, "Submit a Job"),
+            React.createElement(Box, {
+              component: "form",
+              onSubmit: handleSubmit,
+              sx: { display: 'flex', flexDirection: 'column', gap: 2, my: 2 }
+            },
+              React.createElement(TextField, {
+                label: "Job Name",
+                value: jobName,
+                onChange: (e) => setJobName(e.target.value),
+                required: true
+              }),
+              React.createElement(TextField, {
+                label: "Image",
+                value: image,
+                onChange: (e) => setImage(e.target.value),
+                required: true
+              }),
+              React.createElement(TextField, {
+                label: "Command",
+                value: command,
+                onChange: (e) => setCommand(e.target.value),
+                required: true
+              }),
+              React.createElement(TextField, {
+                label: "CPU (e.g., 1)",
+                value: cpu,
+                onChange: (e) => setCpu(e.target.value),
+                required: true
+              }),
+              React.createElement(TextField, {
+                label: "Memory (e.g., 512Mi)",
+                value: memory,
+                onChange: (e) => setMemory(e.target.value),
+                required: true
+              }),
+              React.createElement(Button, { type: "submit", variant: "contained" }, "Submit")
+            ),
+            React.createElement(Typography, { variant: "h5", sx: { mt: 4 } }, "Job Status"),
+            React.createElement(TableContainer, { component: Paper },
+              React.createElement(Table, null,
+                React.createElement(TableHead, null,
+                  React.createElement(TableRow, null,
+                    React.createElement(TableCell, null, "Job Name"),
+                    React.createElement(TableCell, null, "Status"),
+                    React.createElement(TableCell, null, "Start Time"),
+                    React.createElement(TableCell, null, "Completion Time")
+                  )
+                ),
+                React.createElement(TableBody, null,
+                  jobs.map((job, idx) =>
+                    React.createElement(TableRow, { key: idx },
+                      React.createElement(TableCell, null, job.jobName),
+                      React.createElement(TableCell, null, job.status),
+                      React.createElement(TableCell, null, job.startedAt || '-'),
+                      React.createElement(TableCell, null, job.completedAt || '-')
+                    )
+                  )
+                )
+              )
+            ),
+            adminMode && React.createElement(React.Fragment, null,
+              React.createElement(Typography, { variant: "h5", sx: { mt: 4 } }, "Cluster Nodes"),
+              React.createElement(TableContainer, { component: Paper },
+                React.createElement(Table, null,
+                  React.createElement(TableHead, null,
+                    React.createElement(TableRow, null,
+                      React.createElement(TableCell, null, "Name"),
+                      React.createElement(TableCell, null, "Status"),
+                      React.createElement(TableCell, null, "CPU"),
+                      React.createElement(TableCell, null, "Memory")
+                    )
+                  ),
+                  React.createElement(TableBody, null,
+                    nodes.map((node, idx) =>
+                      React.createElement(TableRow, { key: idx },
+                        React.createElement(TableCell, null, node.name),
+                        React.createElement(TableCell, null, node.status),
+                        React.createElement(TableCell, null, node.cpu),
+                        React.createElement(TableCell, null, node.memory)
+                      )
+                    )
+                  )
+                )
+              ),
+              React.createElement(Typography, { variant: "h5", sx: { mt: 4 } }, "Pods"),
+              React.createElement(TableContainer, { component: Paper },
+                React.createElement(Table, null,
+                  React.createElement(TableHead, null,
+                    React.createElement(TableRow, null,
+                      React.createElement(TableCell, null, "Name"),
+                      React.createElement(TableCell, null, "Node"),
+                      React.createElement(TableCell, null, "Status")
+                    )
+                  ),
+                  React.createElement(TableBody, null,
+                    pods.map((pod, idx) =>
+                      React.createElement(TableRow, { key: idx },
+                        React.createElement(TableCell, null, pod.name),
+                        React.createElement(TableCell, null, pod.nodeName),
+                        React.createElement(TableCell, null, pod.status)
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+
+    ReactDOM.render(
+      React.createElement(App),
+      document.getElementById('root')
+    );
+  </script>
+</body>
+</html>

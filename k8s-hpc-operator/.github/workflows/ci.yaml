@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - feat/k8s-hpc-operator
+
+jobs:
+  kind:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Kubernetes kind cluster
+        uses: helm/kind-action@v1
+
+      - name: Build operator
+        run: |
+          cd k8s-hpc-operator/operator
+          make docker-build docker-push IMG=localhost:5000/k8s-hpc-operator-controller:latest
+
+      - name: Deploy operator
+        run: |
+          kubectl apply -f k8s-hpc-operator/deploy/namespace.yaml
+          kubectl apply -f k8s-hpc-operator/deploy/operator.yaml
+
+      - name: Build and deploy UI
+        run: |
+          cd k8s-hpc-operator/ui
+          npm ci
+          npm run build
+          kubectl apply -f k8s-hpc-operator/deploy/ui-deployment.yaml
+
+      - name: Run e2e tests
+        run: |
+          cd k8s-hpc-operator/e2e
+          # implement test execution here

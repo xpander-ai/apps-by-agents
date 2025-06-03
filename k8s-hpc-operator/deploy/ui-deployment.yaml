@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpc-ui
+  labels:
+    app: hpc-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpc-ui
+  template:
+    metadata:
+      labels:
+        app: hpc-ui
+    spec:
+      containers:
+        - name: hpc-ui
+          image: <ui-image>
+          ports:
+            - containerPort: 80
+          env:
+            - name: OPERATOR_SERVICE_HOST
+              value: "hpc-operator"
+            - name: OPERATOR_SERVICE_PORT
+              value: "80"
