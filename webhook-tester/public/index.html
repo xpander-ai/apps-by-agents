@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Webhook Tester</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #endpoint { font-weight: bold; word-break: break-all; }
+    #logs { margin-top: 20px; }
+    .entry { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; }
+    pre { background: #f9f9f9; padding: 10px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Live Webhook Tester</h1>
+  <p>Your webhook endpoint:</p>
+  <div id="endpoint"></div>
+  <div id="logs"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const id = crypto.randomUUID();
+    document.getElementById('endpoint').textContent = `${location.origin}/webhook/${id}`;
+    const socket = io({ query: { id } });
+    const logsDiv = document.getElementById('logs');
+
+    function renderEntry(entry) {
+      const div = document.createElement('div');
+      div.className = 'entry';
+      div.innerHTML = `
+        <div><strong>Timestamp:</strong> ${entry.timestamp}</div>
+        <div><strong>Headers:</strong><pre>${JSON.stringify(entry.headers, null, 2)}</pre></div>
+        <div><strong>Body:</strong><pre>${JSON.stringify(entry.body, null, 2)}</pre></div>
+      `;
+      logsDiv.prepend(div);
+    }
+
+    socket.on('log', (entry) => {
+      renderEntry(entry);
+    });
+  </script>
+</body>
+</html>
