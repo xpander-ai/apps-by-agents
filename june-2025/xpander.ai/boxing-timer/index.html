@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🥊 Boxing Interval Timer 🥊</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f2f2f2;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .timer-container {
+      margin: 2rem;
+      padding: 2rem;
+      border: 5px solid #333;
+      border-radius: 10px;
+      background: #fff;
+      width: 90%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    .state-round {
+      border-color: #d32f2f;
+    }
+    .state-rest {
+      border-color: #388e3c;
+    }
+    .controls,
+    .settings {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .controls button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 0.25rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .display {
+      font-size: 2rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    @media (max-width: 500px) {
+      .timer-container {
+        width: 100%;
+        padding: 1rem;
+      }
+      .display {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🥊 Boxing Interval Timer 🥊</h1>
+  </header>
+  <div class="timer-container state-round" id="timerContainer">
+    <div class="display" id="timeDisplay">03:00</div>
+    <div id="roundInfo">Round 1 of 3</div>
+    <div class="settings">
+      <label>
+        Round Duration (min)
+        <input type="number" id="roundDuration" min="1" value="3" />
+      </label>
+      <label>
+        Rest Duration (min)
+        <input type="number" id="restDuration" min="1" value="1" />
+      </label>
+      <label>
+        Rounds
+        <input type="number" id="roundsCount" min="1" value="3" />
+      </label>
+    </div>
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn" disabled>Stop</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+  <script>
+    let interval;
+    let isRound = true;
+    let currentRound = 1;
+    let timeLeft = 0;
+
+    const timerContainer = document.getElementById('timerContainer');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const roundInfo = document.getElementById('roundInfo');
+    const roundDurationInput = document.getElementById('roundDuration');
+    const restDurationInput = document.getElementById('restDuration');
+    const roundsCountInput = document.getElementById('roundsCount');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function beep() {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      osc.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = 1000;
+      osc.start();
+      setTimeout(() => osc.stop(), 200);
+    }
+
+    function updateDisplay() {
+      const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      const secs = String(timeLeft % 60).padStart(2, '0');
+      timeDisplay.textContent = `${mins}:${secs}`;
+      roundInfo.textContent = `${isRound ? 'Round' : 'Rest'} ${currentRound} of ${roundsCountInput.value}`;
+      timerContainer.className = 'timer-container ' + (isRound ? 'state-round' : 'state-rest');
+    }
+
+    function tick() {
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateDisplay();
+      } else {
+        beep();
+        if (isRound) {
+          isRound = false;
+          timeLeft = parseInt(restDurationInput.value, 10) * 60;
+        } else {
+          if (currentRound < parseInt(roundsCountInput.value, 10)) {
+            currentRound++;
+            isRound = true;
+            timeLeft = parseInt(roundDurationInput.value, 10) * 60;
+          } else {
+            clearInterval(interval);
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            return;
+          }
+        }
+        updateDisplay();
+      }
+    }
+
+    startBtn.addEventListener('click', () => {
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      currentRound = 1;
+      isRound = true;
+      timeLeft = parseInt(roundDurationInput.value, 10) * 60;
+      updateDisplay();
+      interval = setInterval(tick, 1000);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      clearInterval(interval);
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    });
+
+    resetBtn.addEventListener('click', () => {
+      clearInterval(interval);
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+      currentRound = 1;
+      isRound = true;
+      timeLeft = parseInt(roundDurationInput.value, 10) * 60;
+      updateDisplay();
+    });
+  </script>
+</body>
+</html>
