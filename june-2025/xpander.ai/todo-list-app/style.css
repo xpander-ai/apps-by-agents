@@ -1,0 +1,11 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 2rem auto;
+  text-align: center;
+}
+#new-todo { width: 70%; padding: 0.5rem; }
+#add-btn  { padding: 0.5rem; }
+ul { list-style: none; padding: 0; }
+li { padding: 0.5rem 0; border-bottom: 1px solid #ddd; }
+li.completed { text-decoration: line-through; color: #888; }
