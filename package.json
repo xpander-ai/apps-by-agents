@@ -1,0 +1,13 @@
+{
+  "name": "synesthetic-music-painter",
+  "version": "1.0.0",
+  "description": "A synesthetic music painter visualizing audio and motion",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}
