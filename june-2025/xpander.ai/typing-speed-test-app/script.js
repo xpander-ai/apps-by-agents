@@ -2,6 +2,7 @@ const textElement = document.getElementById('text-to-type');
 const inputElement = document.getElementById('input-text');
 const timeElement = document.getElementById('time');
 const wpmElement = document.getElementById('wpm');
+const accuracyElement = document.getElementById('accuracy');
 const restartBtn = document.getElementById('restart-btn');
 
 const texts = [
@@ -36,11 +37,26 @@ function calculateWPM() {
   wpmElement.textContent = wpm;
 }
 
+function calculateAccuracy() {
+  const target = textElement.textContent;
+  const inputText = inputElement.value;
+  let correctChars = 0;
+  for (let i = 0; i < inputText.length; i++) {
+    if (inputText[i] === target[i]) {
+      correctChars++;
+    }
+  }
+  const accuracy = Math.round((correctChars / target.length) * 100) || 0;
+  accuracyElement.textContent = accuracy;
+}
+
 inputElement.addEventListener('input', () => {
   if (!startTime) startTimer();
+  calculateAccuracy();
   if (inputElement.value === textElement.textContent) {
     clearInterval(timerInterval);
     calculateWPM();
+    calculateAccuracy();
     inputElement.disabled = true;
   }
 });
@@ -53,6 +69,7 @@ restartBtn.addEventListener('click', () => {
   startTime = null;
   timeElement.textContent = '0';
   wpmElement.textContent = '0';
+  accuracyElement.textContent = '0';
 });
 
 chooseText();

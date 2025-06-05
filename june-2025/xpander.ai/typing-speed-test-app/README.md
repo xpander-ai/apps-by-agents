@@ -32,4 +32,4 @@ A simple typing speed test application built by an AI agent.
 
 > **Usage**:
 
-> Open `index.html` in a browser. Type the displayed text in the input box. Once complete, your WPM and elapsed time will be displayed.
+> Open `index.html` in a browser. Type the displayed text in the input box. Once complete, your WPM, elapsed time, and accuracy will be displayed.

@@ -1,0 +1,137 @@
+/* style.css - Clean, modern styling for Typing Speed Test */
+
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --primary-color: #007bff;
+  --danger-color: #dc3545;
+  --text-color: #333333;
+  --secondary-text: #6c757d;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  transition: box-shadow var(--transition-speed);
+}
+
+.container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+#text-display {
+  background-color: var(--bg-color);
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: var(--border-radius);
+  min-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+#text-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  resize: vertical;
+  transition: border-color var(--transition-speed);
+}
+
+#text-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#start-button {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+#start-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+#reset-button {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+#reset-button:hover:not(:disabled) {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+#timer,
+#wpm,
+#accuracy {
+  font-size: 1rem;
+  color: var(--secondary-text);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #text-input, #text-display {
+    min-height: 100px;
+  }
+}
