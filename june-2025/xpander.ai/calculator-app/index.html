@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculator App</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="calculator">
-    <div class="display" id="display">0</div>
+    <input type="text" id="display" disabled />
     <div class="buttons">
-      <button data-action="clear" class="action">C</button>
-      <button data-action="backspace" class="action">⌫</button>
+      <button data-action="clear">C</button>
       <button data-action="operator">/</button>
       <button data-action="operator">*</button>
+      <button data-action="operator">-</button>
+
       <button>7</button>
       <button>8</button>
       <button>9</button>
-      <button data-action="operator">-</button>
+      <button data-action="operator">+</button>
+
       <button>4</button>
       <button>5</button>
       <button>6</button>
-      <button data-action="operator">+</button>
+      <button data-action="calculate">=</button>
+
       <button>1</button>
       <button>2</button>
       <button>3</button>
-      <button data-action="equals" class="action">=</button>
       <button>0</button>
-      <button>.</button>
     </div>
   </div>
   <script src="script.js"></script>
