@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Pet Finder</h1>
+  <form id="search-form">
+    <div class="form-group">
+      <label for="species">Species:</label>
+      <select id="species">
+        <option value="">Any</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="bird">Bird</option>
+        <option value="rabbit">Rabbit</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="size">Size:</label>
+      <select id="size">
+        <option value="">Any</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <select id="age">
+        <option value="">Any</option>
+        <option value="baby">Baby</option>
+        <option value="young">Young</option>
+        <option value="adult">Adult</option>
+        <option value="senior">Senior</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="temperament">Temperament:</label>
+      <select id="temperament">
+        <option value="">Any</option>
+        <option value="calm">Calm</option>
+        <option value="active">Active</option>
+        <option value="shy">Shy</option>
+        <option value="friendly">Friendly</option>
+      </select>
+    </div>
+    <button type="submit">Find Pets</button>
+  </form>
+  <div id="results"></div>
+  <script src="script.js"></script>
+</body>
+</html>
