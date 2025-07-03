@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1 {
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+select {
+  width: 100%;
+  padding: 5px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+#results {
+  margin-top: 20px;
+}
+.pet-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
+}
