@@ -45,3 +45,14 @@ body {
 #send-button:hover {
   background-color: #0056b3;
 }
+
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
