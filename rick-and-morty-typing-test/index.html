@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty Typing Speed Test</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">
+                <span class="rick-text">RICK</span> & <span class="morty-text">MORTY</span>
+                <br><span class="subtitle">TYPING SPEED TEST</span>
+            </h1>
+        </header>
+
+        <div class="game-area">
+            <div class="quote-section">
+                <div class="character-info">
+                    <span id="character-name">Rick Sanchez</span>
+                    <div class="portal-animation"></div>
+                </div>
+                <p id="text-to-type" class="quote-text">
+                    Wubba lubba dub dub! Let's see how fast you can type, *burp* Morty!
+                </p>
+            </div>
+
+            <div class="input-section">
+                <textarea 
+                    id="input-text" 
+                    placeholder="Start typing the quote above... *burp*"
+                    disabled
+                ></textarea>
+                <div class="typing-feedback" id="typing-feedback"></div>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">TIME</span>
+                    <span id="time" class="stat-value">0</span>
+                    <span class="stat-unit">s</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">WPM</span>
+                    <span id="wpm" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">ACCURACY</span>
+                    <span id="accuracy" class="stat-value">100</span>
+                    <span class="stat-unit">%</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="start-btn" class="btn btn-start">START TEST</button>
+                <button id="restart-btn" class="btn btn-restart" style="display: none;">NEW QUOTE</button>
+            </div>
+
+            <div class="results" id="results" style="display: none;">
+                <div class="result-title">SCHWIFTY RESULTS!</div>
+                <div class="result-stats">
+                    <div class="result-item">
+                        <span class="result-label">Final WPM:</span>
+                        <span id="final-wpm" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Accuracy:</span>
+                        <span id="final-accuracy" class="result-value">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Time:</span>
+                        <span id="final-time" class="result-value">0s</span>
+                    </div>
+                </div>
+                <div id="result-message" class="result-message"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">Get schwifty with your typing skills! 🚀</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
