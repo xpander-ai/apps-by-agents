@@ -17,17 +17,21 @@ body {
 
 .app-container {
   text-align: center;
+  padding: 20px;
 }
 
 h1 {
   font-size: 3rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   letter-spacing: 2px;
 }
 
-/* Listen button with pulse animation */
+.song-display {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 #listen-btn {
-  position: relative;
   background: #ffffff;
   color: #2a5298;
   border: none;
@@ -45,75 +49,16 @@ h1 {
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
 }
 
-#listen-btn.listening::before,
-#listen-btn.listening::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 120px;
-  height: 120px;
-  transform: translate(-50%, -50%);
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  animation: pulse 1.5s ease-out infinite;
-}
-
-#listen-btn.listening::after {
-  animation-delay: 0.75s;
-}
-
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0;
-  }
-}
-
-/* Result display */
-.hidden {
-  display: none;
-}
-
-#result {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#album-art {
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  object-fit: cover;
-}
-
-.song-details h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.song-details p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
-
 @media (max-width: 600px) {
   h1 {
     font-size: 2rem;
+  }
+  .song-display {
+    font-size: 1.2rem;
   }
   #listen-btn {
     width: 90px;
     height: 90px;
     font-size: 2rem;
-  }
-  #album-art {
-    width: 150px;
-    height: 150px;
   }
 }

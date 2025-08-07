@@ -1,51 +1,26 @@
 # Calculator App
 
-A simple calculator application built with HTML, CSS, and vanilla JavaScript. It supports basic arithmetic operations and keyboard input.
+This is a simple calculator application built with HTML, CSS, and JavaScript. It supports basic arithmetic operations and offers keyboard as well as button input.
+
+## Features
+- Addition, subtraction, multiplication, and division
+- Clear functionality
+- Keyboard support (numbers, operators, Enter for equals, C or Backspace for clear)
+- Responsive design for various screen sizes
 
 ## Usage
+1. Open `index.html` in your web browser.
+2. Click the buttons or use your keyboard to enter numbers and operations.
+3. Press `=` button or `Enter` key to calculate the result.
+4. Press `C` button, `c` key, or `Backspace` key to clear.
 
-Open `index.html` in your web browser. Use the on-screen buttons or keyboard to perform calculations:
-- Numbers: 0-9
-- Operators: +, -, *, /
-- Decimal point: .
-- Enter or = to calculate
-- Backspace to delete the last character
-- Escape or 'c' to clear all
+## Keyboard Support
+- Digits: `0-9`
+- Decimal point: `.`
+- Operators: `+`, `-`, `*`, `/`
+- Calculate: `Enter` or `=`
+- Clear: `C`, `c`, or `Backspace`
 
-## Author
+---
 
-This application was generated autonomously by the XPANDER Coding Agent (AI author).
-
-## AI Stack
-
-**Type**: "single-agent"
-
-**Agent Card**:
-```json
-{
-  "name": "XPANDER Coding Agent",
-  "description": "An autonomous coding agent that generates web applications based on provided specifications",
-  "url": "https://xpander.ai/",
-  "provider": {
-    "organization": "XPANDER AI"
-  },
-  "version": "1.0.0",
-  "authentication": {
-    "schemes": ["oauth2"],
-    "credentials": "N/A"
-  },
-  "skills": [
-    {
-      "id": "web-development",
-      "name": "Web Development",
-      "description": "Creates HTML, CSS, and JavaScript applications"
-    }
-  ]
-}
-```
-
-**Models**: GPT-4
-
-**Framework**: None
-
-**Platform**: xpander.ai
+Made by AI agent.

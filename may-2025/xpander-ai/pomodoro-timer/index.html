@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pomodoro Timer</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="pomodoro-container">
-        <h1>Pomodoro Timer</h1>
-        <div id="timer-display">25:00</div>
-        <div class="controls">
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="reset">Reset</button>
-        </div>
-        <div class="settings">
-            <label>
-                Work Duration:
-                <input type="number" id="work-duration" min="1" max="60" value="25" /> minutes
-            </label>
-            <label>
-                Break Duration:
-                <input type="number" id="break-duration" min="1" max="30" value="5" /> minutes
-            </label>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJ+z9VgNtZ6Xp+RnpFQvgJHLmZcFLy/+3JChI="
-            crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+  <div id="timer">25:00</div>
+  <div class="controls">
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

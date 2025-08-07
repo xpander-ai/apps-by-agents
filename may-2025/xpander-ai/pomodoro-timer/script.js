@@ -1,59 +1,61 @@
-$(function() {
-  let workDuration = parseInt($('#work-duration').val(), 10) * 60;
-  let breakDuration = parseInt($('#break-duration').val(), 10) * 60;
-  let remaining = workDuration;
-  let timer = null;
-  let onBreak = false;
+(function() {
+  const workDuration = 25 * 60;
+  const breakDuration = 5 * 60;
+  let isRunning = false;
+  let isWorkPeriod = true;
+  let remainingTime = workDuration;
+  let timerInterval = null;
 
-  function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
-  }
+  const timerEl = document.getElementById('timer');
+  const startBtn = document.getElementById('start');
+  const pauseBtn = document.getElementById('pause');
+  const resetBtn = document.getElementById('reset');
 
   function updateDisplay() {
-    $('#timer-display').text(formatTime(remaining));
+    const minutes = String(Math.floor(remainingTime / 60)).padStart(2, '0');
+    const seconds = String(remainingTime % 60).padStart(2, '0');
+    timerEl.textContent = `${minutes}:${seconds}`;
+  }
+
+  function switchPeriod() {
+    isWorkPeriod = !isWorkPeriod;
+    remainingTime = isWorkPeriod ? workDuration : breakDuration;
+    updateDisplay();
+  }
+
+  function tick() {
+    if (remainingTime <= 0) {
+      switchPeriod();
+    } else {
+      remainingTime--;
+      updateDisplay();
+    }
   }
 
   function startTimer() {
-    workDuration = parseInt($('#work-duration').val(), 10) * 60;
-    breakDuration = parseInt($('#break-duration').val(), 10) * 60;
-    if (timer) return;
-    timer = setInterval(() => {
-      remaining--;
-      updateDisplay();
-      if (remaining < 0) {
-        clearInterval(timer);
-        timer = null;
-        onBreak = !onBreak;
-        alert(onBreak ? 'Time for a break!' : 'Back to work!');
-        remaining = onBreak ? breakDuration : workDuration;
-        updateDisplay();
-        startTimer();
-      }
-    }, 1000);
+    if (!isRunning) {
+      isRunning = true;
+      timerInterval = setInterval(tick, 1000);
+    }
   }
 
   function pauseTimer() {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
+    if (isRunning) {
+      clearInterval(timerInterval);
+      isRunning = false;
     }
   }
 
   function resetTimer() {
     pauseTimer();
-    workDuration = parseInt($('#work-duration').val(), 10) * 60;
-    breakDuration = parseInt($('#break-duration').val(), 10) * 60;
-    onBreak = false;
-    remaining = workDuration;
+    isWorkPeriod = true;
+    remainingTime = workDuration;
     updateDisplay();
   }
 
-  $('#start').click(startTimer);
-  $('#pause').click(pauseTimer);
-  $('#reset').click(resetTimer);
-  $('#work-duration, #break-duration').change(resetTimer);
+  startBtn.addEventListener('click', startTimer);
+  pauseBtn.addEventListener('click', pauseTimer);
+  resetBtn.addEventListener('click', resetTimer);
 
   updateDisplay();
-});
+})();

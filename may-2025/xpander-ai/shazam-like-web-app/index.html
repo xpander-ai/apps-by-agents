@@ -9,14 +9,10 @@
 <body>
   <div class="app-container">
     <h1>Shazam Lite</h1>
-    <button id="listen-btn" aria-label="Listen for music">🎤</button>
-    <div id="result" class="hidden">
-      <img id="album-art" src="album-art-placeholder.svg" alt="Album Art">
-      <div class="song-details">
-        <h2 id="result-title"></h2>
-        <p id="result-artist"></p>
-      </div>
+    <div class="song-display">
+      Detected Song: <span id="song-title">--</span>
     </div>
+    <button id="listen-btn">🎤</button>
   </div>
   <script src="script.js"></script>
 </body>
