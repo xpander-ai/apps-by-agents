@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty Interdimensional Typing Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="portal-background"></div>
+    <div class="container">
+        <header>
+            <h1>Interdimensional Typing Test</h1>
+            <p class="subtitle">Wubba Lubba Dub Dub! Test your typing skills across dimensions!</p>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="stat-label">Time</span>
+                <span id="timer" class="stat-value">60s</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">WPM</span>
+                <span id="wpm" class="stat-value">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Accuracy</span>
+                <span id="accuracy" class="stat-value">100%</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Errors</span>
+                <span id="errors" class="stat-value">0</span>
+            </div>
+        </div>
+
+        <div class="test-area">
+            <div id="quote-display" class="quote-display">
+                <span class="quote-text">Click "Start Test" to begin your interdimensional typing adventure!</span>
+            </div>
+            
+            <textarea 
+                id="quote-input" 
+                class="quote-input" 
+                placeholder="Start typing here..."
+                disabled
+            ></textarea>
+        </div>
+
+        <div class="controls">
+            <button id="start-btn" class="control-btn start">Start Test</button>
+            <button id="reset-btn" class="control-btn reset" disabled>Reset</button>
+            <select id="difficulty" class="difficulty-select">
+                <option value="easy">Easy Mode (Morty)</option>
+                <option value="medium" selected>Normal Mode (Jerry)</option>
+                <option value="hard">Hard Mode (Rick)</option>
+            </select>
+        </div>
+
+        <div id="results-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Test Complete!</h2>
+                <div class="result-stats">
+                    <div class="result-item">
+                        <span class="result-label">Final WPM:</span>
+                        <span id="final-wpm" class="result-value">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Accuracy:</span>
+                        <span id="final-accuracy" class="result-value">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Errors:</span>
+                        <span id="final-errors" class="result-value">0</span>
+                    </div>
+                </div>
+                <p id="rick-comment" class="rick-comment"></p>
+                <button id="close-modal" class="control-btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-rick"></div>
+    <div class="floating-morty"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
