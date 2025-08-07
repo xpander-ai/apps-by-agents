@@ -67,6 +67,9 @@ let correctChars = 0;
 let totalChars = 0;
 let errors = 0;
 
+const rickCharacterIds = [1, 4, 19, 22, 27, 40, 55, 78, 85, 156, 169, 244, 265, 281, 293];
+const mortyCharacterIds = [2, 14, 75, 78, 79, 169, 186, 200, 261, 276, 277, 281, 293, 361, 362];
+
 const quoteDisplay = document.getElementById('quote-display');
 const quoteInput = document.getElementById('quote-input');
 const startBtn = document.getElementById('start-btn');
@@ -110,6 +113,8 @@ function startTest() {
     currentQuoteIndex = 0;
     
     quoteDisplay.classList.add('active');
+    
+    randomizeCharacterImages();
     
     timerInterval = setInterval(updateTimer, 1000);
 }
@@ -250,4 +255,40 @@ function resetTest() {
     correctChars = 0;
     totalChars = 0;
     errors = 0;
+    
+    randomizeCharacterImages();
 }
+
+function randomizeCharacterImages() {
+    const floatingRick = document.querySelector('.floating-rick');
+    const floatingMorty = document.querySelector('.floating-morty');
+    
+    const randomRickId = rickCharacterIds[Math.floor(Math.random() * rickCharacterIds.length)];
+    const randomMortyId = mortyCharacterIds[Math.floor(Math.random() * mortyCharacterIds.length)];
+    
+    updateCharacterImage(floatingRick, randomRickId, 'rick');
+    updateCharacterImage(floatingMorty, randomMortyId, 'morty');
+}
+
+function updateCharacterImage(element, characterId, characterType) {
+    const imageUrl = `https://rickandmortyapi.com/api/character/avatar/${characterId}.jpeg`;
+    
+    const img = new Image();
+    img.onload = function() {
+        element.style.backgroundImage = `url('${imageUrl}')`;
+    };
+    
+    img.onerror = function() {
+        console.warn(`Failed to load character image for ID ${characterId}, using fallback`);
+        const fallbackSvg = characterType === 'rick' 
+            ? "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2369c8ec'/><text x='50' y='60' text-anchor='middle' font-size='30' fill='white'>R</text></svg>"
+            : "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23ffeb3b'/><text x='50' y='60' text-anchor='middle' font-size='30' fill='black'>M</text></svg>";
+        element.style.backgroundImage = `url('${fallbackSvg}')`;
+    };
+    
+    img.src = imageUrl;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    randomizeCharacterImages();
+});

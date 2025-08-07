@@ -404,25 +404,38 @@ h1 {
 
 .floating-rick, .floating-morty {
     position: fixed;
-    width: 80px;
-    height: 80px;
-    background-size: contain;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
     background-repeat: no-repeat;
-    opacity: 0.3;
+    background-position: center;
+    opacity: 0.8;
     z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.floating-rick:hover, .floating-morty:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .floating-rick {
     top: 10%;
     right: 5%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%2369c8ec"/><text x="50" y="60" text-anchor="middle" font-size="30" fill="white">R</text></svg>');
+    background-image: url('https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+    border-radius: 50%;
+    border: 3px solid var(--portal-green);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
     animation: float-rick 20s ease-in-out infinite;
 }
 
 .floating-morty {
     bottom: 10%;
     left: 5%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23ffeb3b"/><text x="50" y="60" text-anchor="middle" font-size="30" fill="black">M</text></svg>');
+    background-image: url('https://rickandmortyapi.com/api/character/avatar/2.jpeg');
+    border-radius: 50%;
+    border: 3px solid var(--morty-yellow);
+    box-shadow: 0 0 20px rgba(255, 235, 59, 0.4);
     animation: float-morty 15s ease-in-out infinite;
 }
 

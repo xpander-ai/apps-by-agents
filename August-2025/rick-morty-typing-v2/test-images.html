@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Rick and Morty Images</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #00ff41;
+            display: inline-block;
+            margin: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+        .rick-test {
+            background-image: url('https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+        }
+        .morty-test {
+            background-image: url('https://rickandmortyapi.com/api/character/avatar/2.jpeg');
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing Rick and Morty Character Images</h1>
+    <p>If you can see Rick and Morty character faces below, the API images are working correctly:</p>
+    
+    <div>
+        <h3>Rick Sanchez (ID: 1)</h3>
+        <div class="test-image rick-test"></div>
+    </div>
+    
+    <div>
+        <h3>Morty Smith (ID: 2)</h3>
+        <div class="test-image morty-test"></div>
+    </div>
+    
+    <div>
+        <h3>Direct Image Links (for verification):</h3>
+        <p><a href="https://rickandmortyapi.com/api/character/avatar/1.jpeg" target="_blank">Rick's Image</a></p>
+        <p><a href="https://rickandmortyapi.com/api/character/avatar/2.jpeg" target="_blank">Morty's Image</a></p>
+    </div>
+</body>
+</html>
