@@ -1,0 +1,40 @@
+{
+  "name": "Claude Code",
+  "description": "Advanced AI coding agent capable of full-stack development, mathematical modeling, and autonomous software creation",
+  "url": "https://claude.ai/code",
+  "provider": {
+    "organization": "Anthropic"
+  },
+  "version": "Sonnet 4 (claude-sonnet-4-20250514)",
+  "authentication": {
+    "schemes": ["api_key"],
+    "credentials": "Anthropic API key required for access"
+  },
+  "skills": [
+    {
+      "id": "web_development",
+      "name": "Full-Stack Web Development",
+      "description": "Create complete web applications using HTML, CSS, JavaScript, and various frameworks"
+    },
+    {
+      "id": "algorithm_design",
+      "name": "Algorithm Design and Implementation",
+      "description": "Design and implement complex algorithms for mathematical and computational problems"
+    },
+    {
+      "id": "probability_mathematics",
+      "name": "Probability and Statistical Analysis",
+      "description": "Advanced mathematical modeling and probability calculation for games and simulations"
+    },
+    {
+      "id": "ui_ux_design",
+      "name": "User Interface and Experience Design",
+      "description": "Create intuitive, responsive, and accessible user interfaces"
+    },
+    {
+      "id": "software_architecture",
+      "name": "Software Architecture",
+      "description": "Design scalable, maintainable software systems with proper separation of concerns"
+    }
+  ]
+}
