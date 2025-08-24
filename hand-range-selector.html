@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Hand Range Selector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: 800px;
+        }
+
+        .left-panel {
+            flex: 2;
+            padding: 20px;
+            border-right: 2px solid #eee;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .grid-container {
+            display: inline-block;
+            background: #fff;
+            border: 3px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .hand-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 2px;
+            background: #333;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .hand-cell {
+            width: 40px;
+            height: 40px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            border-radius: 3px;
+        }
+
+        .hand-cell:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hand-cell.selected {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .hand-cell.premium {
+            background: #ff4444;
+            color: white;
+        }
+
+        .hand-cell.strong {
+            background: #ff8800;
+            color: white;
+        }
+
+        .hand-cell.playable {
+            background: #ffdd00;
+            color: black;
+        }
+
+        .hand-cell.marginal {
+            background: #88dd88;
+            color: black;
+        }
+
+        .hand-cell.weak {
+            background: #dddddd;
+            color: black;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .preset-btn.tight {
+            background: #ff4444;
+            color: white;
+        }
+
+        .preset-btn.loose {
+            background: #44ff44;
+            color: black;
+        }
+
+        .preset-btn.aggressive {
+            background: #ff8800;
+            color: white;
+        }
+
+        .preset-btn.clear {
+            background: #666;
+            color: white;
+        }
+
+        .preset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .range-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+        }
+
+        .percentage-display {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 10px;
+        }
+
+        .opponent-modeling {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .opponent-modeling h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .opponent-range {
+            margin: 10px 0;
+        }
+
+        .equity-calculator {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f4f8;
+            border-radius: 10px;
+        }
+
+        .equity-result {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heatmap-container {
+            margin-top: 20px;
+        }
+
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 1px;
+            background: #333;
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+        .heatmap-cell {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+        }
+
+        .stats-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px solid #eee;
+            }
+
+            .hand-cell {
+                width: 35px;
+                height: 35px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hand-cell {
+                width: 25px;
+                height: 25px;
+                font-size: 8px;
+            }
+
+            .preset-buttons {
+                justify-content: center;
+            }
+
+            .heatmap-cell {
+                width: 20px;
+                height: 20px;
+                font-size: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🃏 Poker Hand Range Selector</h1>
+            <p>Professional poker range analysis and equity calculator</p>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="controls">
+                    <h3>Quick Range Presets</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn tight" onclick="applyPreset('tight')">Tight (10%)</button>
+                        <button class="preset-btn loose" onclick="applyPreset('loose')">Loose (35%)</button>
+                        <button class="preset-btn aggressive" onclick="applyPreset('aggressive')">Aggressive (25%)</button>
+                        <button class="preset-btn clear" onclick="clearRange()">Clear All</button>
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="rangeSlider">Range Percentage: <span id="rangePercent">0%</span></label>
+                        <input type="range" id="rangeSlider" class="range-slider" min="0" max="100" value="0" oninput="updateRangeByPercentage(this.value)">
+                    </div>
+
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color premium"></div>
+                            <span>Premium</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color strong"></div>
+                            <span>Strong</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color playable"></div>
+                            <span>Playable</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color marginal"></div>
+                            <span>Marginal</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color weak"></div>
+                            <span>Weak</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color selected"></div>
+                            <span>Selected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="hand-grid" id="handGrid"></div>
+                </div>
+
+                <div class="stats-panel">
+                    <h4>Range Statistics</h4>
+                    <div class="stat-item">
+                        <span>Total Hands:</span>
+                        <span id="totalHands">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Range %:</span>
+                        <span id="rangePercentage">0.0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Combinations:</span>
+                        <span id="totalCombos">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="opponent-modeling">
+                    <h3>Opponent Modeling</h3>
+                    <div class="opponent-range">
+                        <label>Opponent Range:</label>
+                        <div class="preset-buttons">
+                            <button class="preset-btn tight" onclick="setOpponentRange('tight')">Tight</button>
+                            <button class="preset-btn loose" onclick="setOpponentRange('loose')">Loose</button>
+                            <button class="preset-btn aggressive" onclick="setOpponentRange('aggressive')">Aggressive</button>
+                        </div>
+                    </div>
+
+                    <div class="equity-calculator">
+                        <h4>Range vs Range Equity</h4>
+                        <button onclick="calculateEquity()" style="width: 100%; padding: 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 10px 0;">Calculate Equity</button>
+                        <div class="equity-result" id="equityResult">
+                            Click "Calculate Equity" to see results
+                        </div>
+                    </div>
+
+                    <div class="heatmap-container">
+                        <h4>Equity Heatmap</h4>
+                        <div class="heatmap-grid" id="heatmapGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ranks = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
+        const handStrengths = {
+            'AA': 95, 'KK': 92, 'QQ': 88, 'JJ': 82, 'TT': 75,
+            'AKs': 85, 'AQs': 80, 'AJs': 75, 'ATs': 70, 'A9s': 62,
+            'AKo': 78, 'AQo': 72, 'AJo': 67, 'ATo': 62, 'A9o': 55,
+            'KQs': 75, 'KJs': 70, 'KTs': 65, 'K9s': 58, 'K8s': 52,
+            'KQo': 67, 'KJo': 62, 'KTo': 57, 'K9o': 50, 'K8o': 45,
+            'QJs': 68, 'QTs': 62, 'Q9s': 56, 'Q8s': 50, 'Q7s': 45,
+            'QJo': 60, 'QTo': 55, 'Q9o': 48, 'Q8o': 42, 'Q7o': 38,
+            'JTs': 60, 'J9s': 54, 'J8s': 48, 'J7s': 43, 'J6s': 38,
+            'JTo': 52, 'J9o': 46, 'J8o': 40, 'J7o': 35, 'J6o': 30
+        };
+
+        let selectedHands = new Set();
+        let opponentRange = new Set();
+        let handRankings = [];
+
+        function initializeGrid() {
+            const grid = document.getElementById('handGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < 13; i++) {
+                for (let j = 0; j < 13; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'hand-cell';
+                    
+                    let handText;
+                    if (i === j) {
+                        handText = ranks[i] + ranks[i];
+                    } else if (i < j) {
+                        handText = ranks[i] + ranks[j] + 's';
+                    } else {
+                        handText = ranks[j] + ranks[i] + 'o';
+                    }
+                    
+                    cell.textContent = handText;
+                    cell.dataset.hand = handText;
+                    
+                    const strength = getHandStrength(handText);
+                    cell.classList.add(getStrengthClass(strength));
+                    
+                    cell.addEventListener('click', () => toggleHand(handText, cell));
+                    grid.appendChild(cell);
+                }
+            }
+            
+            createHandRankings();
+            initializeHeatmap();
+        }
+
+        function getHandStrength(hand) {
+            if (handStrengths[hand] !== undefined) {
+                return handStrengths[hand];
+            }
+            
+            const ranks = hand.slice(0, 2);
+            const suited = hand.includes('s');
+            
+            if (ranks[0] === ranks[1]) {
+                const pairRank = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'].indexOf(ranks[0]);
+                return Math.max(40, 90 - pairRank * 6);
+            }
+            
+            const rank1 = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'].indexOf(ranks[0]);
+            const rank2 = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'].indexOf(ranks[1]);
+            
+            const gap = Math.abs(rank1 - rank2);
+            let baseStrength = 70 - Math.min(rank1, rank2) * 4 - gap * 2;
+            
+            if (suited) baseStrength += 8;
+            if (gap <= 1) baseStrength += 5;
+            if (ranks.includes('A')) baseStrength += 10;
+            
+            return Math.max(20, Math.min(85, baseStrength));
+        }
+
+        function getStrengthClass(strength) {
+            if (strength >= 80) return 'premium';
+            if (strength >= 65) return 'strong';
+            if (strength >= 50) return 'playable';
+            if (strength >= 35) return 'marginal';
+            return 'weak';
+        }
+
+        function createHandRankings() {
+            handRankings = [];
+            const cells = document.querySelectorAll('.hand-cell');
+            
+            cells.forEach(cell => {
+                const hand = cell.dataset.hand;
+                const strength = getHandStrength(hand);
+                handRankings.push({ hand, strength, element: cell });
+            });
+            
+            handRankings.sort((a, b) => b.strength - a.strength);
+        }
+
+        function toggleHand(hand, cell) {
+            if (selectedHands.has(hand)) {
+                selectedHands.delete(hand);
+                cell.classList.remove('selected');
+            } else {
+                selectedHands.add(hand);
+                cell.classList.add('selected');
+            }
+            updateStats();
+        }
+
+        function applyPreset(presetType) {
+            clearRange();
+            
+            const presets = {
+                tight: 0.10,
+                loose: 0.35,
+                aggressive: 0.25
+            };
+            
+            const targetPercentage = presets[presetType];
+            const handsToSelect = Math.floor(handRankings.length * targetPercentage);
+            
+            for (let i = 0; i < handsToSelect; i++) {
+                const handData = handRankings[i];
+                selectedHands.add(handData.hand);
+                handData.element.classList.add('selected');
+            }
+            
+            updateStats();
+        }
+
+        function clearRange() {
+            selectedHands.clear();
+            document.querySelectorAll('.hand-cell').forEach(cell => {
+                cell.classList.remove('selected');
+            });
+            updateStats();
+        }
+
+        function updateRangeByPercentage(percentage) {
+            clearRange();
+            
+            const targetPercentage = percentage / 100;
+            const handsToSelect = Math.floor(handRankings.length * targetPercentage);
+            
+            for (let i = 0; i < handsToSelect; i++) {
+                const handData = handRankings[i];
+                selectedHands.add(handData.hand);
+                handData.element.classList.add('selected');
+            }
+            
+            document.getElementById('rangePercent').textContent = percentage + '%';
+            updateStats();
+        }
+
+        function updateStats() {
+            const totalHands = selectedHands.size;
+            const totalPossibleHands = 169;
+            const percentage = ((totalHands / totalPossibleHands) * 100).toFixed(1);
+            
+            let totalCombos = 0;
+            selectedHands.forEach(hand => {
+                if (hand.length === 2) {
+                    totalCombos += 6;
+                } else if (hand.includes('s')) {
+                    totalCombos += 4;
+                } else {
+                    totalCombos += 12;
+                }
+            });
+            
+            document.getElementById('totalHands').textContent = totalHands;
+            document.getElementById('rangePercentage').textContent = percentage + '%';
+            document.getElementById('totalCombos').textContent = totalCombos;
+            
+            document.getElementById('rangeSlider').value = percentage;
+            document.getElementById('rangePercent').textContent = percentage + '%';
+        }
+
+        function setOpponentRange(presetType) {
+            opponentRange.clear();
+            
+            const presets = {
+                tight: 0.10,
+                loose: 0.35,
+                aggressive: 0.25
+            };
+            
+            const targetPercentage = presets[presetType];
+            const handsToSelect = Math.floor(handRankings.length * targetPercentage);
+            
+            for (let i = 0; i < handsToSelect; i++) {
+                opponentRange.add(handRankings[i].hand);
+            }
+        }
+
+        function calculateEquity() {
+            if (selectedHands.size === 0 || opponentRange.size === 0) {
+                document.getElementById('equityResult').innerHTML = 'Please select both hero and opponent ranges';
+                return;
+            }
+            
+            let heroWins = 0;
+            let totalCombinations = 0;
+            
+            selectedHands.forEach(heroHand => {
+                opponentRange.forEach(villainHand => {
+                    if (heroHand !== villainHand) {
+                        const heroStrength = getHandStrength(heroHand);
+                        const villainStrength = getHandStrength(villainHand);
+                        
+                        if (heroStrength > villainStrength) {
+                            heroWins += 1;
+                        } else if (heroStrength === villainStrength) {
+                            heroWins += 0.5;
+                        }
+                        
+                        totalCombinations++;
+                    }
+                });
+            });
+            
+            const equity = totalCombinations > 0 ? (heroWins / totalCombinations * 100).toFixed(1) : 0;
+            
+            document.getElementById('equityResult').innerHTML = `
+                <div style="color: #667eea;">Hero Equity: ${equity}%</div>
+                <div style="color: #764ba2; font-size: 0.8em; margin-top: 5px;">
+                    Villain Equity: ${(100 - equity).toFixed(1)}%
+                </div>
+            `;
+            
+            updateHeatmap();
+        }
+
+        function initializeHeatmap() {
+            const heatmapGrid = document.getElementById('heatmapGrid');
+            heatmapGrid.innerHTML = '';
+            
+            for (let i = 0; i < 13; i++) {
+                for (let j = 0; j < 13; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'heatmap-cell';
+                    
+                    let handText;
+                    if (i === j) {
+                        handText = ranks[i] + ranks[i];
+                    } else if (i < j) {
+                        handText = ranks[i] + ranks[j] + 's';
+                    } else {
+                        handText = ranks[j] + ranks[i] + 'o';
+                    }
+                    
+                    cell.dataset.hand = handText;
+                    cell.style.background = '#666';
+                    
+                    heatmapGrid.appendChild(cell);
+                }
+            }
+        }
+
+        function updateHeatmap() {
+            const heatmapCells = document.querySelectorAll('.heatmap-cell');
+            
+            heatmapCells.forEach(cell => {
+                const hand = cell.dataset.hand;
+                let equity = 50;
+                
+                if (opponentRange.size > 0) {
+                    let wins = 0;
+                    let total = 0;
+                    
+                    const heroStrength = getHandStrength(hand);
+                    
+                    opponentRange.forEach(villainHand => {
+                        if (hand !== villainHand) {
+                            const villainStrength = getHandStrength(villainHand);
+                            
+                            if (heroStrength > villainStrength) {
+                                wins += 1;
+                            } else if (heroStrength === villainStrength) {
+                                wins += 0.5;
+                            }
+                            
+                            total++;
+                        }
+                    });
+                    
+                    equity = total > 0 ? (wins / total) * 100 : 50;
+                }
+                
+                const red = Math.round(255 * (1 - equity / 100));
+                const green = Math.round(255 * (equity / 100));
+                const blue = 50;
+                
+                cell.style.background = `rgb(${red}, ${green}, ${blue})`;
+                cell.textContent = equity.toFixed(0);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeGrid);
+    </script>
+</body>
+</html>
