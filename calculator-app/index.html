@@ -3,30 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator App</title>
+  <title>Advanced Simulation Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="calculator">
-    <input type="text" class="display" id="display" disabled />
-    <div class="buttons">
-      <button data-value="7">7</button>
-      <button data-value="8">8</button>
-      <button data-value="9">9</button>
-      <button data-value="/">÷</button>
-      <button data-value="4">4</button>
-      <button data-value="5">5</button>
-      <button data-value="6">6</button>
-      <button data-value="*">×</button>
-      <button data-value="1">1</button>
-      <button data-value="2">2</button>
-      <button data-value="3">3</button>
-      <button data-value="-">−</button>
-      <button data-value="0">0</button>
-      <button data-value=".">.</button>
-      <button data-value="=">=</button>
-      <button data-value="+">+</button>
-      <button data-value="C" class="clear">C</button>
+  <div class="app-container">
+    <!-- Calculator Section -->
+    <div class="calculator">
+      <input type="text" class="display" id="display" disabled />
+      <div class="buttons">
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button data-value="/">÷</button>
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="*">×</button>
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="-">−</button>
+        <button data-value="0">0</button>
+        <button data-value=".">.</button>
+        <button data-value="=">=</button>
+        <button data-value="+">+</button>
+        <button data-value="C" class="clear">C</button>
+      </div>
+    </div>
+
+    <!-- Advanced Settings Panel -->
+    <div class="settings-panel">
+      <h2>Advanced Settings</h2>
+      
+      <!-- Simulation Parameters Section -->
+      <div class="collapsible-section" id="simulation-section">
+        <div class="section-header" onclick="toggleSection('simulation')">
+          <h3>Simulation Parameters</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content" id="simulation-content">
+          <!-- Monte Carlo Iterations Slider -->
+          <div class="setting-group">
+            <label for="monte-carlo-slider">Monte Carlo Iterations</label>
+            <div class="slider-container">
+              <input type="range" id="monte-carlo-slider" min="1000" max="100000" value="10000" step="1000">
+              <span class="slider-value" id="monte-carlo-value">10K</span>
+            </div>
+          </div>
+          
+          <!-- Advanced Calculations Toggles -->
+          <div class="setting-group">
+            <label>Advanced Calculations</label>
+            <div class="toggle-switches">
+              <div class="toggle-switch">
+                <input type="checkbox" id="confidence-intervals" checked>
+                <label for="confidence-intervals" class="switch"></label>
+                <span>Confidence Intervals</span>
+              </div>
+              <div class="toggle-switch">
+                <input type="checkbox" id="variance-analysis">
+                <label for="variance-analysis" class="switch"></label>
+                <span>Variance Analysis</span>
+              </div>
+              <div class="toggle-switch">
+                <input type="checkbox" id="sensitivity-analysis">
+                <label for="sensitivity-analysis" class="switch"></label>
+                <span>Sensitivity Analysis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preset Configurations Section -->
+      <div class="collapsible-section" id="presets-section">
+        <div class="section-header" onclick="toggleSection('presets')">
+          <h3>Preset Configurations</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="section-content" id="presets-content">
+          <div class="preset-buttons">
+            <button class="preset-btn" onclick="applyPreset('quick')">Quick Mode</button>
+            <button class="preset-btn" onclick="applyPreset('accurate')">Accurate Mode</button>
+            <button class="preset-btn" onclick="applyPreset('tournament')">Tournament Mode</button>
+          </div>
+          <div class="preset-info" id="preset-info">
+            <p>Select a preset configuration to automatically adjust simulation parameters.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Run Simulation Button -->
+      <button class="run-simulation-btn" onclick="runSimulation()">Run Simulation</button>
+    </div>
+
+    <!-- Results History Panel -->
+    <div class="history-panel">
+      <div class="history-header">
+        <h2>Results History</h2>
+        <button class="clear-history-btn" onclick="clearHistory()">Clear All</button>
+      </div>
+      <div class="history-content" id="history-content">
+        <p class="no-history">No calculations yet. Run a simulation to see results here.</p>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
