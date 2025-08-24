@@ -1,3 +1,4 @@
+// Test comment to verify system is working
 document.addEventListener('DOMContentLoaded', () => {
   const display = document.getElementById('display');
   const buttons = document.querySelectorAll('.buttons button');
