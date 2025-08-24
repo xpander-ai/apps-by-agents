@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Odds Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🃏 Poker Odds Calculator</h1>
+            <p>Calculate your Texas Hold'em odds and probabilities</p>
+        </header>
+
+        <div class="calculator">
+            <div class="input-section">
+                <div class="hand-input">
+                    <h3>Your Hand</h3>
+                    <div class="card-inputs">
+                        <select id="card1-rank" class="card-select">
+                            <option value="">Rank</option>
+                            <option value="A">A</option>
+                            <option value="K">K</option>
+                            <option value="Q">Q</option>
+                            <option value="J">J</option>
+                            <option value="T">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                        </select>
+                        <select id="card1-suit" class="card-select">
+                            <option value="">Suit</option>
+                            <option value="♠">♠</option>
+                            <option value="♥">♥</option>
+                            <option value="♦">♦</option>
+                            <option value="♣">♣</option>
+                        </select>
+                        <select id="card2-rank" class="card-select">
+                            <option value="">Rank</option>
+                            <option value="A">A</option>
+                            <option value="K">K</option>
+                            <option value="Q">Q</option>
+                            <option value="J">J</option>
+                            <option value="T">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                        </select>
+                        <select id="card2-suit" class="card-select">
+                            <option value="">Suit</option>
+                            <option value="♠">♠</option>
+                            <option value="♥">♥</option>
+                            <option value="♦">♦</option>
+                            <option value="♣">♣</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="community-cards">
+                    <h3>Community Cards (Optional)</h3>
+                    <div class="community-grid">
+                        <div class="community-card">
+                            <label>Flop 1:</label>
+                            <select id="flop1-rank" class="card-select">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="flop1-suit" class="card-select">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="community-card">
+                            <label>Flop 2:</label>
+                            <select id="flop2-rank" class="card-select">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="flop2-suit" class="card-select">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="community-card">
+                            <label>Flop 3:</label>
+                            <select id="flop3-rank" class="card-select">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="flop3-suit" class="card-select">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="community-card">
+                            <label>Turn:</label>
+                            <select id="turn-rank" class="card-select">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="turn-suit" class="card-select">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="community-card">
+                            <label>River:</label>
+                            <select id="river-rank" class="card-select">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="river-suit" class="card-select">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="players-input">
+                    <label for="player-count">Number of Players:</label>
+                    <input type="number" id="player-count" min="2" max="10" value="2">
+                </div>
+
+                <button id="calculate-btn" class="calculate-btn">Calculate Odds</button>
+            </div>
+
+            <div class="results-section" id="results">
+                <h3>Results</h3>
+                <div class="result-item">
+                    <span class="result-label">Win Probability:</span>
+                    <span class="result-value" id="win-prob">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tie Probability:</span>
+                    <span class="result-value" id="tie-prob">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Lose Probability:</span>
+                    <span class="result-value" id="lose-prob">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Best Hand:</span>
+                    <span class="result-value" id="best-hand">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading" id="loading" style="display: none;">
+            <p>Calculating odds... This may take a few seconds.</p>
+        </div>
+
+        <footer>
+            <p>🤖 Built with AI • Pure HTML, CSS & JavaScript</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
