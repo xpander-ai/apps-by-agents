@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Poker Odds Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Poker Odds Calculator</h1>
+        
+        <!-- Main Calculator Section -->
+        <div class="calculator-section">
+            <div class="hand-input">
+                <h3>Your Hand</h3>
+                <div class="cards">
+                    <select class="card-select" id="hand1-card1">
+                        <option value="">Select Card</option>
+                    </select>
+                    <select class="card-select" id="hand1-card2">
+                        <option value="">Select Card</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="opponents">
+                <h3>Opponents</h3>
+                <div class="opponent-controls">
+                    <label>Number of opponents:</label>
+                    <input type="number" id="opponents-count" min="1" max="9" value="1">
+                </div>
+            </div>
+            
+            <div class="board">
+                <h3>Community Cards</h3>
+                <div class="cards">
+                    <select class="card-select" id="flop1">
+                        <option value="">Flop 1</option>
+                    </select>
+                    <select class="card-select" id="flop2">
+                        <option value="">Flop 2</option>
+                    </select>
+                    <select class="card-select" id="flop3">
+                        <option value="">Flop 3</option>
+                    </select>
+                    <select class="card-select" id="turn">
+                        <option value="">Turn</option>
+                    </select>
+                    <select class="card-select" id="river">
+                        <option value="">River</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button id="calculate-btn" class="calculate-button">Calculate Odds</button>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section" id="results-section">
+            <h3>Results</h3>
+            <div class="results-content">
+                <div class="win-probability">
+                    <span class="label">Win Probability:</span>
+                    <span class="value" id="win-prob">--</span>
+                </div>
+                <div class="tie-probability">
+                    <span class="label">Tie Probability:</span>
+                    <span class="value" id="tie-prob">--</span>
+                </div>
+                <div class="hand-strength">
+                    <span class="label">Hand Strength:</span>
+                    <span class="value" id="hand-strength">--</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Settings Panel -->
+        <div class="settings-panel">
+            <div class="settings-header" onclick="toggleSettings()">
+                <h3>Advanced Settings</h3>
+                <span class="toggle-icon" id="settings-toggle">▼</span>
+            </div>
+            <div class="settings-content" id="settings-content">
+                <!-- Simulation Parameters -->
+                <div class="settings-section">
+                    <h4>Simulation Parameters</h4>
+                    <div class="slider-group">
+                        <label for="iterations-slider">Monte Carlo Iterations: <span id="iterations-value">10000</span></label>
+                        <input type="range" id="iterations-slider" min="1000" max="100000" value="10000" step="1000">
+                        <div class="slider-labels">
+                            <span>1K</span>
+                            <span>100K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced Calculations -->
+                <div class="settings-section">
+                    <h4>Advanced Calculations</h4>
+                    <div class="toggle-switches">
+                        <div class="switch-group">
+                            <label class="switch">
+                                <input type="checkbox" id="pot-odds" checked>
+                                <span class="slider-switch"></span>
+                                Pot Odds Analysis
+                            </label>
+                        </div>
+                        <div class="switch-group">
+                            <label class="switch">
+                                <input type="checkbox" id="implied-odds">
+                                <span class="slider-switch"></span>
+                                Implied Odds
+                            </label>
+                        </div>
+                        <div class="switch-group">
+                            <label class="switch">
+                                <input type="checkbox" id="position-analysis">
+                                <span class="slider-switch"></span>
+                                Position Analysis
+                            </label>
+                        </div>
+                        <div class="switch-group">
+                            <label class="switch">
+                                <input type="checkbox" id="range-analysis">
+                                <span class="slider-switch"></span>
+                                Range Analysis
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preset Configurations -->
+                <div class="settings-section">
+                    <h4>Preset Configurations</h4>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" onclick="applyPreset('quick')">Quick</button>
+                        <button class="preset-btn active" onclick="applyPreset('accurate')">Accurate</button>
+                        <button class="preset-btn" onclick="applyPreset('tournament')">Tournament</button>
+                    </div>
+                    <div class="preset-info">
+                        <p id="preset-description">Accurate mode: 10K iterations with all calculations enabled</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results History Panel -->
+        <div class="history-panel">
+            <div class="history-header" onclick="toggleHistory()">
+                <h3>Results History</h3>
+                <span class="toggle-icon" id="history-toggle">▼</span>
+            </div>
+            <div class="history-content" id="history-content">
+                <div class="history-controls">
+                    <button id="clear-history" onclick="clearHistory()">Clear All</button>
+                    <button id="export-history" onclick="exportHistory()">Export</button>
+                </div>
+                <div class="history-list" id="history-list">
+                    <p class="no-history">No calculations yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
