@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Odds Visualization Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <h1>🎰 Poker Odds Dashboard</h1>
+            <div class="game-controls">
+                <button id="deal-cards" class="btn-primary">Deal New Hand</button>
+                <button id="next-street" class="btn-secondary">Next Street</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Cards Section -->
+            <section class="cards-section">
+                <div class="player-cards">
+                    <h3>Your Hand</h3>
+                    <div class="card-container" id="player-cards"></div>
+                </div>
+                <div class="community-cards">
+                    <h3>Community Cards</h3>
+                    <div class="card-container" id="community-cards"></div>
+                </div>
+            </section>
+
+            <!-- Odds Visualization Section -->
+            <section class="odds-section">
+                <!-- Win/Tie/Lose Progress Bars -->
+                <div class="progress-section">
+                    <h3>Win Probability</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-label">Win</div>
+                            <div class="progress-track">
+                                <div class="progress-fill win-fill" id="win-progress"></div>
+                            </div>
+                            <div class="progress-value" id="win-value">0%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-label">Tie</div>
+                            <div class="progress-track">
+                                <div class="progress-fill tie-fill" id="tie-progress"></div>
+                            </div>
+                            <div class="progress-value" id="tie-value">0%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-label">Lose</div>
+                            <div class="progress-track">
+                                <div class="progress-fill lose-fill" id="lose-progress"></div>
+                            </div>
+                            <div class="progress-value" id="lose-value">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="chart-section">
+                    <h3>Probability Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="probability-pie-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Probability Meters -->
+                <div class="meters-section">
+                    <h3>Live Metrics</h3>
+                    <div class="meters-grid">
+                        <div class="meter">
+                            <div class="meter-label">Overall Equity</div>
+                            <div class="meter-gauge">
+                                <div class="gauge-fill" id="equity-gauge"></div>
+                                <div class="gauge-value" id="equity-value">0%</div>
+                            </div>
+                        </div>
+                        <div class="meter">
+                            <div class="meter-label">Hand Strength</div>
+                            <div class="meter-gauge">
+                                <div class="gauge-fill strength-gauge" id="strength-gauge"></div>
+                                <div class="gauge-value" id="strength-value">Low</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hand Analysis Section -->
+            <section class="analysis-section">
+                <!-- Hand Strength Indicator -->
+                <div class="hand-strength">
+                    <h3>Hand Analysis</h3>
+                    <div class="strength-indicator">
+                        <div class="strength-meter">
+                            <div class="strength-levels">
+                                <div class="level" data-level="1">High Card</div>
+                                <div class="level" data-level="2">Pair</div>
+                                <div class="level" data-level="3">Two Pair</div>
+                                <div class="level" data-level="4">Three of a Kind</div>
+                                <div class="level" data-level="5">Straight</div>
+                                <div class="level" data-level="6">Flush</div>
+                                <div class="level" data-level="7">Full House</div>
+                                <div class="level" data-level="8">Four of a Kind</div>
+                                <div class="level" data-level="9">Straight Flush</div>
+                            </div>
+                            <div class="current-hand" id="current-hand-type">High Card</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outs Counter -->
+                <div class="outs-section">
+                    <h3>Outs Analysis</h3>
+                    <div class="outs-counter">
+                        <div class="outs-number" id="outs-count">0</div>
+                        <div class="outs-label">Cards to improve</div>
+                    </div>
+                    <div class="outs-cards" id="outs-cards"></div>
+                </div>
+            </section>
+
+            <!-- Equity Graph -->
+            <section class="graph-section">
+                <h3>Equity Timeline</h3>
+                <div class="chart-container">
+                    <canvas id="equity-graph"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
