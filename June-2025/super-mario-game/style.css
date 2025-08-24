@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #87CEEB, #98FB98);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    background: #5C94FC;
+    border: 4px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#game-ui {
+    background: #000;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#score-display {
+    display: flex;
+    gap: 24px;
+}
+
+#game-canvas {
+    display: block;
+    background: #5C94FC;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+#controls-info {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1000;
+    border: 3px solid #333;
+}
+
+.modal h2 {
+    margin-bottom: 16px;
+    color: #333;
+    font-size: 24px;
+}
+
+.modal p {
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 18px;
+}
+
+.modal button {
+    background: #FF6B35;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    transition: background-color 0.2s;
+}
+
+.modal button:hover {
+    background: #E55A2B;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game-over .modal {
+    background: #FF6B6B;
+    color: white;
+}
+
+#game-over .modal h2 {
+    color: white;
+}
+
+#game-over .modal p {
+    color: #FFE5E5;
+}
+
+#level-complete .modal {
+    background: #4ECDC4;
+    color: white;
+}
+
+#level-complete .modal h2 {
+    color: white;
+}
+
+#level-complete .modal p {
+    color: #E8FFFE;
+}
+
+@media (max-width: 1100px) {
+    #game-canvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    #game-container {
+        max-width: 95vw;
+    }
+}
+
+.sprite {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
