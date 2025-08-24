@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Hole Card Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Texas Hold'em Hole Card Selector</h1>
+        
+        <div class="preset-section">
+            <h3>Quick Select Popular Hands</h3>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-hand="AA">AA</button>
+                <button class="preset-btn" data-hand="KK">KK</button>
+                <button class="preset-btn" data-hand="QQ">QQ</button>
+                <button class="preset-btn" data-hand="JJ">JJ</button>
+                <button class="preset-btn" data-hand="AK">AK</button>
+                <button class="preset-btn" data-hand="AQ">AQ</button>
+                <button class="preset-btn" data-hand="AJ">AJ</button>
+                <button class="preset-btn" data-hand="KQ">KQ</button>
+                <button class="preset-btn" data-hand="KJ">KJ</button>
+                <button class="preset-btn" data-hand="QJ">QJ</button>
+            </div>
+        </div>
+
+        <div class="card-selection-area">
+            <div class="selected-cards">
+                <h3>Your Hole Cards</h3>
+                <div class="selected-display">
+                    <div class="selected-card" id="card1-display">
+                        <span class="card-placeholder">Select Card 1</span>
+                    </div>
+                    <div class="selected-card" id="card2-display">
+                        <span class="card-placeholder">Select Card 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-selectors">
+                <div class="selector-group">
+                    <label for="card1-selector">Card 1</label>
+                    <div class="dropdown-container">
+                        <button class="dropdown-btn" id="card1-selector" data-card="1">
+                            <span class="selected-text">Select Card</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-content" id="card1-dropdown">
+                            <div class="card-grid" id="card1-grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selector-group">
+                    <label for="card2-selector">Card 2</label>
+                    <div class="dropdown-container">
+                        <button class="dropdown-btn" id="card2-selector" data-card="2">
+                            <span class="selected-text">Select Card</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-content" id="card2-dropdown">
+                            <div class="card-grid" id="card2-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="clear-btn" id="clear-selection">Clear Selection</button>
+            <button class="random-btn" id="random-hand">Random Hand</button>
+        </div>
+
+        <div class="hand-info" id="hand-info" style="display: none;">
+            <h4>Hand Information</h4>
+            <div class="hand-details">
+                <p>Hand: <span id="hand-name"></span></p>
+                <p>Strength: <span id="hand-strength"></span></p>
+                <p>Suited: <span id="hand-suited"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
