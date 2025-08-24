@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Cards - Drag & Drop Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Community Cards Interface</h1>
+            <div class="controls">
+                <button id="shuffleBtn" class="btn primary">🎲 Shuffle & Deal</button>
+                <button id="resetBtn" class="btn secondary">🔄 Reset</button>
+                <button id="undoBtn" class="btn secondary" disabled>↶ Undo</button>
+                <button id="redoBtn" class="btn secondary" disabled>↷ Redo</button>
+                <button id="saveBtn" class="btn secondary">💾 Save</button>
+                <button id="loadBtn" class="btn secondary">📂 Load</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Card Deck -->
+            <section class="deck-section">
+                <h2>Card Deck</h2>
+                <div class="deck-container">
+                    <div id="cardDeck" class="card-deck">
+                        <!-- Cards will be generated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Cards Area -->
+            <section class="community-section">
+                <h2>Community Cards</h2>
+                <div class="community-board">
+                    <div class="flop-section">
+                        <h3>Flop</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="flop-1"></div>
+                            <div class="card-slot" data-position="flop-2"></div>
+                            <div class="card-slot" data-position="flop-3"></div>
+                        </div>
+                    </div>
+                    <div class="turn-section">
+                        <h3>Turn</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="turn"></div>
+                        </div>
+                    </div>
+                    <div class="river-section">
+                        <h3>River</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="river"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- State Management Modal -->
+        <div id="stateModal" class="modal hidden">
+            <div class="modal-content">
+                <h3 id="modalTitle">Saved States</h3>
+                <div id="statesList" class="states-list">
+                    <!-- Saved states will be listed here -->
+                </div>
+                <div class="modal-actions">
+                    <input type="text" id="stateNameInput" placeholder="Enter state name..." class="hidden">
+                    <button id="modalConfirmBtn" class="btn primary">Load</button>
+                    <button id="modalCancelBtn" class="btn secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drag Preview -->
+        <div id="dragPreview" class="drag-preview hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
