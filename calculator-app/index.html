@@ -3,32 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator App</title>
+  <title>Advanced Calculator with Monte Carlo Simulation</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="calculator">
-    <input type="text" class="display" id="display" disabled />
-    <div class="buttons">
-      <button data-value="7">7</button>
-      <button data-value="8">8</button>
-      <button data-value="9">9</button>
-      <button data-value="/">÷</button>
-      <button data-value="4">4</button>
-      <button data-value="5">5</button>
-      <button data-value="6">6</button>
-      <button data-value="*">×</button>
-      <button data-value="1">1</button>
-      <button data-value="2">2</button>
-      <button data-value="3">3</button>
-      <button data-value="-">−</button>
-      <button data-value="0">0</button>
-      <button data-value=".">.</button>
-      <button data-value="=">=</button>
-      <button data-value="+">+</button>
-      <button data-value="C" class="clear">C</button>
+  <div class="app-container">
+    <div class="calculator">
+      <input type="text" class="display" id="display" disabled />
+      <div class="buttons">
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button data-value="/">÷</button>
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="*">×</button>
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="-">−</button>
+        <button data-value="0">0</button>
+        <button data-value=".">.</button>
+        <button data-value="=">=</button>
+        <button data-value="+">+</button>
+        <button data-value="C" class="clear">C</button>
+        <button id="monte-carlo-btn" class="special">Monte Carlo</button>
+      </div>
+    </div>
+
+    <div class="settings-panel" id="settings-panel">
+      <div class="panel-header">
+        <h3>Advanced Settings</h3>
+        <button id="toggle-settings" class="toggle-btn">▼</button>
+      </div>
+      
+      <div class="panel-content" id="panel-content">
+        <div class="section">
+          <div class="section-header" data-section="simulation">
+            <h4>Simulation Parameters</h4>
+            <span class="collapse-icon">▼</span>
+          </div>
+          <div class="section-content" id="simulation-content">
+            <div class="slider-container">
+              <label for="monte-carlo-iterations">Monte Carlo Iterations:</label>
+              <input type="range" id="monte-carlo-iterations" min="1000" max="100000" step="1000" value="10000">
+              <span id="iterations-value">10,000</span>
+            </div>
+            
+            <div class="preset-buttons">
+              <button class="preset-btn" data-preset="quick">Quick (5K)</button>
+              <button class="preset-btn" data-preset="accurate">Accurate (50K)</button>
+              <button class="preset-btn active" data-preset="tournament">Tournament (10K)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-header" data-section="advanced">
+            <h4>Advanced Calculations</h4>
+            <span class="collapse-icon">▼</span>
+          </div>
+          <div class="section-content" id="advanced-content">
+            <div class="toggle-container">
+              <div class="toggle-item">
+                <label for="statistical-analysis">Statistical Analysis</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="statistical-analysis" checked>
+                  <span class="slider"></span>
+                </div>
+              </div>
+              
+              <div class="toggle-item">
+                <label for="confidence-intervals">95% Confidence Intervals</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="confidence-intervals">
+                  <span class="slider"></span>
+                </div>
+              </div>
+              
+              <div class="toggle-item">
+                <label for="variance-analysis">Variance Analysis</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="variance-analysis">
+                  <span class="slider"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="history-panel" id="history-panel">
+      <div class="panel-header">
+        <h3>Results History</h3>
+        <button id="clear-history" class="clear-btn">Clear</button>
+      </div>
+      <div class="history-content" id="history-content">
+        <div class="history-placeholder">No calculations yet</div>
+      </div>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
