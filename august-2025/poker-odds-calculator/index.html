@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Odds Calculator - Real-Time Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎰 Poker Odds Calculator</h1>
+            <p>Real-Time Odds Visualization Dashboard</p>
+        </header>
+
+        <main>
+            <div class="game-section">
+                <div class="cards-input">
+                    <h2>Your Hand</h2>
+                    <div class="hand-cards">
+                        <div class="card-selector" data-card="player1">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="card-selector" data-card="player2">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3>Community Cards</h3>
+                    <div class="community-cards">
+                        <div class="card-selector" data-card="flop1">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="card-selector" data-card="flop2">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="card-selector" data-card="flop3">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="card-selector" data-card="turn">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                        <div class="card-selector" data-card="river">
+                            <select class="card-rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="T">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select class="card-suit">
+                                <option value="">Suit</option>
+                                <option value="♠">♠</option>
+                                <option value="♥">♥</option>
+                                <option value="♦">♦</option>
+                                <option value="♣">♣</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="opponents-section">
+                        <h3>Number of Opponents</h3>
+                        <input type="range" id="opponentSlider" min="1" max="9" value="1">
+                        <span id="opponentCount">1</span>
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <div class="dashboard-grid">
+                        <!-- Win/Tie/Lose Progress Bars -->
+                        <div class="stats-card">
+                            <h3>Win Probability</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar win-bar">
+                                    <div class="progress-fill" id="winProgress"></div>
+                                    <span class="progress-text" id="winPercent">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-card">
+                            <h3>Tie Probability</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar tie-bar">
+                                    <div class="progress-fill" id="tieProgress"></div>
+                                    <span class="progress-text" id="tiePercent">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-card">
+                            <h3>Lose Probability</h3>
+                            <div class="progress-container">
+                                <div class="progress-bar lose-bar">
+                                    <div class="progress-fill" id="loseProgress"></div>
+                                    <span class="progress-text" id="losePercent">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="stats-card chart-card">
+                            <h3>Odds Distribution</h3>
+                            <canvas id="oddsChart" width="300" height="300"></canvas>
+                        </div>
+
+                        <!-- Hand Strength Meter -->
+                        <div class="stats-card">
+                            <h3>Hand Strength</h3>
+                            <div class="strength-meter">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <div class="strength-labels">
+                                    <span>Weak</span>
+                                    <span>Strong</span>
+                                </div>
+                                <div class="hand-type" id="handType">High Card</div>
+                            </div>
+                        </div>
+
+                        <!-- Outs Counter -->
+                        <div class="stats-card">
+                            <h3>Outs to Improve</h3>
+                            <div class="outs-display">
+                                <div class="outs-number" id="outsNumber">0</div>
+                                <div class="outs-text">outs</div>
+                            </div>
+                            <div class="outs-cards" id="outsCards"></div>
+                        </div>
+
+                        <!-- Equity Graph -->
+                        <div class="stats-card chart-card full-width">
+                            <h3>Equity Timeline</h3>
+                            <canvas id="equityChart" width="600" height="200"></canvas>
+                        </div>
+
+                        <!-- Probability Meters -->
+                        <div class="stats-card">
+                            <h3>Draw Probabilities</h3>
+                            <div class="draw-meters">
+                                <div class="draw-meter">
+                                    <div class="meter-label">Flush Draw</div>
+                                    <div class="circular-progress" id="flushMeter">
+                                        <span class="progress-value" id="flushValue">0%</span>
+                                    </div>
+                                </div>
+                                <div class="draw-meter">
+                                    <div class="meter-label">Straight Draw</div>
+                                    <div class="circular-progress" id="straightMeter">
+                                        <span class="progress-value" id="straightValue">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
