@@ -1,4 +1,5 @@
 
+// 30-day yoga tracker app
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('days-container');
   let progress = JSON.parse(localStorage.getItem('yogaProgress')) || {};
