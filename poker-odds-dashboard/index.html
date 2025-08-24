@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Hold'em Odds Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="poker-app">
+        <header class="app-header">
+            <h1>Texas Hold'em Odds Dashboard</h1>
+            <div class="game-controls">
+                <button id="new-game-btn" class="btn btn-primary">New Game</button>
+                <button id="deal-flop-btn" class="btn btn-secondary" disabled>Deal Flop</button>
+                <button id="deal-turn-btn" class="btn btn-secondary" disabled>Deal Turn</button>
+                <button id="deal-river-btn" class="btn btn-secondary" disabled>Deal River</button>
+            </div>
+        </header>
+
+        <main class="game-layout">
+            <!-- Left Side: Game Board -->
+            <section class="game-board">
+                <div class="community-cards">
+                    <h3>Community Cards</h3>
+                    <div class="cards-container">
+                        <div class="card-slot" data-position="flop1">
+                            <div class="card hidden" id="flop1"></div>
+                        </div>
+                        <div class="card-slot" data-position="flop2">
+                            <div class="card hidden" id="flop2"></div>
+                        </div>
+                        <div class="card-slot" data-position="flop3">
+                            <div class="card hidden" id="flop3"></div>
+                        </div>
+                        <div class="card-slot" data-position="turn">
+                            <div class="card hidden" id="turn"></div>
+                        </div>
+                        <div class="card-slot" data-position="river">
+                            <div class="card hidden" id="river"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="player-hands">
+                    <div class="player" id="player1">
+                        <h4>Player 1</h4>
+                        <div class="hand">
+                            <div class="card hidden" id="p1-card1"></div>
+                            <div class="card hidden" id="p1-card2"></div>
+                        </div>
+                        <div class="player-stats">
+                            <div class="hand-strength">
+                                <span class="label">Hand:</span>
+                                <span class="value" id="p1-hand-name">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player" id="player2">
+                        <h4>Player 2</h4>
+                        <div class="hand">
+                            <div class="card hidden" id="p2-card1"></div>
+                            <div class="card hidden" id="p2-card2"></div>
+                        </div>
+                        <div class="player-stats">
+                            <div class="hand-strength">
+                                <span class="label">Hand:</span>
+                                <span class="value" id="p2-hand-name">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Odds Dashboard -->
+            <aside class="odds-dashboard">
+                <div class="dashboard-header">
+                    <h2>Real-Time Odds</h2>
+                </div>
+
+                <!-- Win/Tie/Lose Probabilities -->
+                <div class="probability-section">
+                    <h3>Win Probabilities</h3>
+                    <div class="probability-bars">
+                        <div class="player-probability">
+                            <div class="player-label">Player 1</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar win" id="p1-win-bar">
+                                    <div class="progress-fill" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="p1-win-pct">0%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="player-probability">
+                            <div class="player-label">Tie</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar tie" id="tie-bar">
+                                    <div class="progress-fill" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="tie-pct">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="player-probability">
+                            <div class="player-label">Player 2</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar win" id="p2-win-bar">
+                                    <div class="progress-fill" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="p2-win-pct">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="pie-chart-section">
+                    <h3>Probability Distribution</h3>
+                    <div class="pie-chart-container">
+                        <svg id="pie-chart" width="200" height="200" viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+                        </svg>
+                        <div class="pie-legend">
+                            <div class="legend-item">
+                                <span class="color-indicator p1-color"></span>
+                                <span>Player 1</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-indicator tie-color"></span>
+                                <span>Tie</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="color-indicator p2-color"></span>
+                                <span>Player 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Probability Meters -->
+                <div class="meters-section">
+                    <h3>Probability Meters</h3>
+                    <div class="meters-grid">
+                        <div class="meter">
+                            <div class="meter-label">Player 1 Win</div>
+                            <div class="circular-meter" id="p1-meter">
+                                <svg width="80" height="80" viewBox="0 0 80 80">
+                                    <circle cx="40" cy="40" r="35" fill="none" stroke="#e0e0e0" stroke-width="4"/>
+                                    <circle cx="40" cy="40" r="35" fill="none" stroke="#4CAF50" stroke-width="4" 
+                                            stroke-dasharray="220" stroke-dashoffset="220" class="meter-fill"/>
+                                </svg>
+                                <span class="meter-value">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="meter">
+                            <div class="meter-label">Player 2 Win</div>
+                            <div class="circular-meter" id="p2-meter">
+                                <svg width="80" height="80" viewBox="0 0 80 80">
+                                    <circle cx="40" cy="40" r="35" fill="none" stroke="#e0e0e0" stroke-width="4"/>
+                                    <circle cx="40" cy="40" r="35" fill="none" stroke="#2196F3" stroke-width="4" 
+                                            stroke-dasharray="220" stroke-dashoffset="220" class="meter-fill"/>
+                                </svg>
+                                <span class="meter-value">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hand Strength Indicators -->
+                <div class="hand-strength-section">
+                    <h3>Hand Strength</h3>
+                    <div class="strength-indicators">
+                        <div class="strength-bar">
+                            <div class="strength-label">Player 1</div>
+                            <div class="strength-meter">
+                                <div class="strength-fill" id="p1-strength" data-strength="0"></div>
+                            </div>
+                            <div class="strength-text" id="p1-strength-text">High Card</div>
+                        </div>
+                        <div class="strength-bar">
+                            <div class="strength-label">Player 2</div>
+                            <div class="strength-meter">
+                                <div class="strength-fill" id="p2-strength" data-strength="0"></div>
+                            </div>
+                            <div class="strength-text" id="p2-strength-text">High Card</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outs Counter -->
+                <div class="outs-section">
+                    <h3>Outs Analysis</h3>
+                    <div class="outs-display">
+                        <div class="outs-counter">
+                            <div class="outs-number" id="p1-outs">0</div>
+                            <div class="outs-label">Player 1 Outs</div>
+                        </div>
+                        <div class="outs-counter">
+                            <div class="outs-number" id="p2-outs">0</div>
+                            <div class="outs-label">Player 2 Outs</div>
+                        </div>
+                    </div>
+                    <div class="outs-visualization">
+                        <div class="remaining-deck" id="remaining-deck"></div>
+                    </div>
+                </div>
+
+                <!-- Equity Graph -->
+                <div class="equity-section">
+                    <h3>Equity Evolution</h3>
+                    <div class="equity-graph">
+                        <canvas id="equity-chart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
