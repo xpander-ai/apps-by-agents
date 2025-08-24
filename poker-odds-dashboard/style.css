@@ -1,0 +1,554 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f4c3a 0%, #1e5f3f 50%, #2d7044 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+.dashboard {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.controls button:active {
+    transform: translateY(0);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Player and Community Sections */
+.player-section, .community-section {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-section h2, .community-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #ffd700;
+}
+
+.player-cards, .community-cards {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.card, .card-placeholder {
+    width: 60px;
+    height: 84px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card-placeholder {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+}
+
+.card.hearts, .card.diamonds {
+    color: #e53e3e;
+}
+
+.card.clubs, .card.spades {
+    color: #2d3748;
+}
+
+.card.highlight {
+    box-shadow: 0 0 15px #ffd700;
+    border-color: #ffd700;
+    transform: scale(1.05);
+}
+
+.card.out-card {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
+/* Hand Strength Meter */
+.hand-strength {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.strength-meter {
+    width: 200px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.strength-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #f44336, #ff9800, #4CAF50);
+    width: 0%;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+}
+
+#hand-strength-text {
+    font-weight: bold;
+    min-width: 150px;
+}
+
+/* Odds Dashboard */
+.odds-dashboard {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.odds-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.odds-row:last-child {
+    margin-bottom: 20px;
+}
+
+/* Progress Bars */
+.progress-container h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-align: center;
+}
+
+.progress-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.progress-item span:first-child {
+    width: 60px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.progress-fill.win {
+    background: linear-gradient(90deg, #4CAF50, #66BB6A);
+}
+
+.progress-fill.tie {
+    background: linear-gradient(90deg, #FF9800, #FFB74D);
+}
+
+.progress-fill.lose {
+    background: linear-gradient(90deg, #f44336, #EF5350);
+}
+
+.percentage {
+    width: 50px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Pie Chart */
+.pie-container {
+    text-align: center;
+}
+
+.pie-container h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.pie-chart svg {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.pie-center-text {
+    font-size: 18px;
+    font-weight: bold;
+    fill: white;
+}
+
+.pie-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.legend-item.win .color-box {
+    background: #4CAF50;
+}
+
+.legend-item.tie .color-box {
+    background: #FF9800;
+}
+
+.legend-item.lose .color-box {
+    background: #f44336;
+}
+
+/* Probability Meters */
+.meters-container h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-align: center;
+}
+
+.meters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.meter {
+    text-align: center;
+}
+
+.meter-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.meter-gauge {
+    width: 100%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.gauge-fill {
+    height: 100%;
+    width: 0%;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 15px;
+    position: relative;
+}
+
+.gauge-fill.win {
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+}
+
+.gauge-fill.strength {
+    background: linear-gradient(90deg, #2196F3, #64B5F6);
+}
+
+.meter-value {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Outs Counter */
+.outs-container {
+    text-align: center;
+}
+
+.outs-container h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.outs-display {
+    margin-bottom: 20px;
+}
+
+.outs-number {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.outs-label {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+.outs-cards {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.outs-cards .card {
+    width: 30px;
+    height: 42px;
+    font-size: 10px;
+}
+
+.outs-percentage {
+    font-size: 16px;
+    font-weight: bold;
+    color: #66BB6A;
+}
+
+/* Equity Graph */
+.equity-container {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.equity-container h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.equity-graph {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.equity-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.equity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.equity-item .color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.equity-item .color-box.player {
+    background: #4CAF50;
+}
+
+.equity-item .color-box.opponent {
+    background: #f44336;
+}
+
+/* History Section */
+.history-section {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-section h3 {
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.history-log {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .odds-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+    }
+    
+    .controls {
+        gap: 10px;
+    }
+    
+    .controls button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .card, .card-placeholder {
+        width: 50px;
+        height: 70px;
+        font-size: 12px;
+    }
+    
+    .player-cards, .community-cards {
+        gap: 8px;
+    }
+    
+    .outs-number {
+        font-size: 2.5em;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}

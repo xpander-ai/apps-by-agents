@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Poker Odds Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <h1>🎰 Real-time Poker Odds Dashboard</h1>
+            <div class="controls">
+                <button id="deal-button">Deal New Hand</button>
+                <button id="next-street">Next Street</button>
+                <button id="reset-button">Reset Game</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Player Hand Section -->
+            <section class="player-section">
+                <h2>Your Hand</h2>
+                <div class="player-cards" id="player-cards">
+                    <div class="card-placeholder">?</div>
+                    <div class="card-placeholder">?</div>
+                </div>
+                <div class="hand-strength">
+                    <div class="strength-meter">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                    <span id="hand-strength-text">Click Deal to Start</span>
+                </div>
+            </section>
+
+            <!-- Community Cards Section -->
+            <section class="community-section">
+                <h2>Community Cards</h2>
+                <div class="community-cards" id="community-cards">
+                    <div class="card-placeholder">?</div>
+                    <div class="card-placeholder">?</div>
+                    <div class="card-placeholder">?</div>
+                    <div class="card-placeholder">?</div>
+                    <div class="card-placeholder">?</div>
+                </div>
+            </section>
+
+            <!-- Odds Dashboard -->
+            <section class="odds-dashboard">
+                <div class="odds-row">
+                    <!-- Win/Tie/Lose Progress Bars -->
+                    <div class="progress-container">
+                        <h3>Winning Probability</h3>
+                        <div class="progress-bars">
+                            <div class="progress-item">
+                                <span>Win</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill win" id="win-progress" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="win-percentage">0%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Tie</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill tie" id="tie-progress" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="tie-percentage">0%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Lose</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill lose" id="lose-progress" data-percentage="0"></div>
+                                </div>
+                                <span class="percentage" id="lose-percentage">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pie Chart -->
+                    <div class="pie-container">
+                        <h3>Odds Breakdown</h3>
+                        <div class="pie-chart" id="pie-chart">
+                            <svg width="200" height="200" viewBox="0 0 200 200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="20"/>
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#4CAF50" stroke-width="20" 
+                                        stroke-dasharray="0 565.48" transform="rotate(-90 100 100)" id="win-arc"/>
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#FF9800" stroke-width="20" 
+                                        stroke-dasharray="0 565.48" transform="rotate(-90 100 100)" id="tie-arc"/>
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#f44336" stroke-width="20" 
+                                        stroke-dasharray="0 565.48" transform="rotate(-90 100 100)" id="lose-arc"/>
+                                <text x="100" y="105" text-anchor="middle" class="pie-center-text" id="pie-center-text">0%</text>
+                            </svg>
+                        </div>
+                        <div class="pie-legend">
+                            <div class="legend-item win"><div class="color-box"></div>Win</div>
+                            <div class="legend-item tie"><div class="color-box"></div>Tie</div>
+                            <div class="legend-item lose"><div class="color-box"></div>Lose</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="odds-row">
+                    <!-- Probability Meters -->
+                    <div class="meters-container">
+                        <h3>Probability Meters</h3>
+                        <div class="meters">
+                            <div class="meter">
+                                <div class="meter-title">Win Probability</div>
+                                <div class="meter-gauge">
+                                    <div class="gauge-fill win" id="win-gauge"></div>
+                                </div>
+                                <div class="meter-value" id="win-meter-value">0%</div>
+                            </div>
+                            <div class="meter">
+                                <div class="meter-title">Hand Strength</div>
+                                <div class="meter-gauge">
+                                    <div class="gauge-fill strength" id="strength-gauge"></div>
+                                </div>
+                                <div class="meter-value" id="strength-meter-value">0%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outs Counter -->
+                    <div class="outs-container">
+                        <h3>Outs Analysis</h3>
+                        <div class="outs-display">
+                            <div class="outs-number" id="outs-number">0</div>
+                            <div class="outs-label">Outs</div>
+                        </div>
+                        <div class="outs-cards" id="outs-cards">
+                            <!-- Dynamically filled with out cards -->
+                        </div>
+                        <div class="outs-percentage">
+                            <span id="outs-percentage">0%</span> chance to improve
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equity Graph -->
+                <div class="equity-container">
+                    <h3>Equity Graph</h3>
+                    <div class="equity-graph">
+                        <canvas id="equity-canvas" width="600" height="200"></canvas>
+                    </div>
+                    <div class="equity-legend">
+                        <div class="equity-item"><div class="color-box player"></div>Your Equity</div>
+                        <div class="equity-item"><div class="color-box opponent"></div>Opponent Equity</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Hand History -->
+        <section class="history-section">
+            <h3>Hand History</h3>
+            <div class="history-log" id="history-log">
+                <p>Welcome! Click "Deal New Hand" to begin analyzing poker odds.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
