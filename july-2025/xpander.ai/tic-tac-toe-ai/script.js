@@ -1,3 +1,4 @@
+console.log("PR TEST - WHERE IS THE PR?");
 document.addEventListener('DOMContentLoaded', () => {
   const controls = document.querySelector('.controls');
   const chooseXBtn = document.getElementById('choose-x');
