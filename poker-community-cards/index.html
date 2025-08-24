@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Community Cards - Drag & Drop Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🃏 Poker Community Cards</h1>
+            <div class="controls">
+                <button id="deal-btn" class="btn btn-primary">
+                    <span>🎲 Deal Random</span>
+                </button>
+                <button id="shuffle-btn" class="btn btn-secondary">
+                    <span>🔄 Shuffle</span>
+                </button>
+                <button id="clear-btn" class="btn btn-warning">
+                    <span>🧹 Clear Board</span>
+                </button>
+                <button id="undo-btn" class="btn btn-neutral" disabled>
+                    <span>↶ Undo</span>
+                </button>
+                <button id="redo-btn" class="btn btn-neutral" disabled>
+                    <span>↷ Redo</span>
+                </button>
+            </div>
+            <div class="state-controls">
+                <button id="save-btn" class="btn btn-success">
+                    <span>💾 Save State</span>
+                </button>
+                <button id="load-btn" class="btn btn-info">
+                    <span>📂 Load State</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <div class="community-section">
+                <h2>Community Cards</h2>
+                <div class="board-cards">
+                    <div class="flop-section">
+                        <h3>Flop</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="flop-1" data-type="flop">
+                                <span class="slot-label">1</span>
+                            </div>
+                            <div class="card-slot" data-position="flop-2" data-type="flop">
+                                <span class="slot-label">2</span>
+                            </div>
+                            <div class="card-slot" data-position="flop-3" data-type="flop">
+                                <span class="slot-label">3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="turn-section">
+                        <h3>Turn</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="turn" data-type="turn">
+                                <span class="slot-label">4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="river-section">
+                        <h3>River</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="river" data-type="river">
+                                <span class="slot-label">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-section">
+                <h2>Card Deck</h2>
+                <div class="deck-container">
+                    <div id="card-deck" class="card-deck"></div>
+                    <div class="deck-info">
+                        <p>Cards remaining: <span id="cards-remaining">52</span></p>
+                        <p>Drag cards to community positions</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span id="action-status">Ready to play</span>
+            </div>
+            <div class="status-item">
+                <span id="history-status">History: 0 actions</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="animation-layer" class="animation-layer"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

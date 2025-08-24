@@ -1,0 +1,443 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f4c3a 0%, #2d5a27 50%, #0f4c3a 100%);
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.controls, .state-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b35, #ff8e53);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: white;
+}
+
+.btn-warning {
+    background: linear-gradient(45deg, #f7931e, #ffcc02);
+    color: white;
+}
+
+.btn-neutral {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #11998e, #38ef7d);
+    color: white;
+}
+
+.btn-info {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.community-section {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.community-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.board-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.flop-section, .turn-section, .river-section {
+    text-align: center;
+}
+
+.flop-section h3, .turn-section h3, .river-section h3 {
+    margin-bottom: 15px;
+    color: #ffd700;
+    font-size: 1.3em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.card-slots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card-slot {
+    width: 120px;
+    height: 168px;
+    border: 3px dashed rgba(255,255,255,0.4);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.05);
+}
+
+.card-slot.drag-over {
+    border-color: #ffd700;
+    background: rgba(255,215,0,0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
+}
+
+.card-slot.occupied {
+    border-style: solid;
+    border-color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+}
+
+.slot-label {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.6);
+    pointer-events: none;
+}
+
+.card-slot.occupied .slot-label {
+    display: none;
+}
+
+.deck-section {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.deck-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.deck-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-deck {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+}
+
+.card {
+    width: 60px;
+    height: 84px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 1px solid #ddd;
+}
+
+.card.dragging {
+    cursor: grabbing;
+    transform: rotate(5deg) scale(1.1);
+    z-index: 1000;
+    opacity: 0.9;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.card.in-slot {
+    width: 100px;
+    height: 140px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card.in-slot:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.card.flipping {
+    animation: flipCard 0.6s ease-in-out;
+}
+
+@keyframes flipCard {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(90deg); }
+    100% { transform: rotateY(0deg); }
+}
+
+.card.dealing {
+    animation: dealCard 0.8s ease-out;
+}
+
+@keyframes dealCard {
+    0% {
+        transform: translateY(-100vh) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.card-rank {
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.card-suit {
+    font-size: 1.4em;
+    line-height: 1;
+}
+
+.red {
+    color: #d63031;
+}
+
+.black {
+    color: #2d3436;
+}
+
+.deck-info {
+    text-align: center;
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.deck-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.status-item {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.animation-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.shuffle-animation {
+    position: absolute;
+    animation: shuffle 1s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes shuffle {
+    0%, 100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+    25% { transform: translateX(-30px) rotate(-15deg); opacity: 0.7; }
+    50% { transform: translateX(30px) rotate(15deg); opacity: 0.5; }
+    75% { transform: translateX(-15px) rotate(-8deg); opacity: 0.7; }
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: particle 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes particle {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translateY(-50px);
+    }
+}
+
+@media (max-width: 768px) {
+    .game-board {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card-slot {
+        width: 80px;
+        height: 112px;
+    }
+    
+    .card {
+        width: 40px;
+        height: 56px;
+        font-size: 10px;
+    }
+    
+    .card.in-slot {
+        width: 70px;
+        height: 98px;
+        font-size: 12px;
+    }
+    
+    .controls, .state-controls {
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    border-radius: 8px;
+    border-left: 4px solid #4ecdc4;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10001;
+    animation: slideInRight 0.3s ease-out;
+    max-width: 300px;
+}
+
+.toast.success {
+    border-left-color: #11998e;
+}
+
+.toast.warning {
+    border-left-color: #f7931e;
+}
+
+.toast.error {
+    border-left-color: #d63031;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
