@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Community Cards - Drag & Drop Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Poker Community Cards</h1>
+            <div class="controls">
+                <button id="dealBtn" class="btn primary">Deal Random Cards</button>
+                <button id="clearBtn" class="btn secondary">Clear Board</button>
+                <button id="undoBtn" class="btn secondary" disabled>Undo</button>
+                <button id="redoBtn" class="btn secondary" disabled>Redo</button>
+                <button id="saveBtn" class="btn secondary">Save State</button>
+                <button id="loadBtn" class="btn secondary">Load State</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Community Cards Board -->
+            <section class="board-section">
+                <h2>Community Cards</h2>
+                <div class="community-board">
+                    <div class="flop-section">
+                        <h3>Flop</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="flop-1" data-card="">
+                                <div class="slot-placeholder">Drag card here</div>
+                            </div>
+                            <div class="card-slot" data-position="flop-2" data-card="">
+                                <div class="slot-placeholder">Drag card here</div>
+                            </div>
+                            <div class="card-slot" data-position="flop-3" data-card="">
+                                <div class="slot-placeholder">Drag card here</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="turn-section">
+                        <h3>Turn</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="turn" data-card="">
+                                <div class="slot-placeholder">Drag card here</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="river-section">
+                        <h3>River</h3>
+                        <div class="card-slots">
+                            <div class="card-slot" data-position="river" data-card="">
+                                <div class="slot-placeholder">Drag card here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card Deck -->
+            <section class="deck-section">
+                <h2>Card Deck</h2>
+                <div class="deck-controls">
+                    <button id="shuffleBtn" class="btn small">Shuffle Deck</button>
+                    <div class="deck-info">
+                        <span id="cardsRemaining">52 cards remaining</span>
+                    </div>
+                </div>
+                <div class="card-deck" id="cardDeck">
+                    <!-- Cards will be generated dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Save/Load Modal -->
+        <div id="saveLoadModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Save/Load Board State</h3>
+                    <button class="modal-close" id="modalClose">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="saveSection">
+                        <label for="saveSlotSelect">Save to slot:</label>
+                        <select id="saveSlotSelect">
+                            <option value="slot1">Slot 1</option>
+                            <option value="slot2">Slot 2</option>
+                            <option value="slot3">Slot 3</option>
+                        </select>
+                        <input type="text" id="saveSlotName" placeholder="Enter slot name (optional)">
+                    </div>
+                    <div id="loadSection">
+                        <label for="loadSlotSelect">Load from slot:</label>
+                        <select id="loadSlotSelect">
+                            <!-- Options populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="modalAction" class="btn primary">Save</button>
+                    <button id="modalCancel" class="btn secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
