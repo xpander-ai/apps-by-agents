@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Hole Cards Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🃏 Poker Hole Cards Selector</h1>
+            <p>Select your Texas Hold'em hole cards with elegant dropdown selectors</p>
+        </header>
+
+        <div class="card-selector-section">
+            <h2>Your Hole Cards</h2>
+            
+            <div class="hole-cards-container">
+                <div class="card-selector">
+                    <label>Card 1</label>
+                    <div class="card-dropdown" id="card1-dropdown">
+                        <div class="selected-card" data-card="">
+                            <span class="card-display">Select Card</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <div class="card-grid" id="card1-grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-selector">
+                    <label>Card 2</label>
+                    <div class="card-dropdown" id="card2-dropdown">
+                        <div class="selected-card" data-card="">
+                            <span class="card-display">Select Card</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="dropdown-menu">
+                            <div class="card-grid" id="card2-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="selected-hand-display">
+                <h3>Selected Hand</h3>
+                <div class="hand-cards" id="hand-display">
+                    <div class="empty-card">?</div>
+                    <div class="empty-card">?</div>
+                </div>
+                <div class="hand-info" id="hand-info">
+                    <span class="hand-name">No cards selected</span>
+                    <span class="hand-strength"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="preset-section">
+            <h3>Quick Select Popular Hands</h3>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-cards="AS,AH">AA</button>
+                <button class="preset-btn" data-cards="KS,KH">KK</button>
+                <button class="preset-btn" data-cards="QS,QH">QQ</button>
+                <button class="preset-btn" data-cards="JS,JH">JJ</button>
+                <button class="preset-btn" data-cards="AS,KH">AK</button>
+                <button class="preset-btn" data-cards="AS,KS">AKs</button>
+                <button class="preset-btn" data-cards="AS,QH">AQ</button>
+                <button class="preset-btn" data-cards="AS,QS">AQs</button>
+                <button class="preset-btn" data-cards="KS,QH">KQ</button>
+                <button class="preset-btn" data-cards="AS,JH">AJ</button>
+                <button class="preset-btn" data-cards="10S,10H">TT</button>
+                <button class="preset-btn" data-cards="9S,9H">99</button>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <button id="clear-btn" class="action-btn clear-btn">Clear Selection</button>
+            <button id="random-btn" class="action-btn random-btn">Random Hand</button>
+        </div>
+
+        <div class="stats-section">
+            <h3>Hand Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Hand Type:</span>
+                    <span class="stat-value" id="hand-type">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Suited:</span>
+                    <span class="stat-value" id="suited-status">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Approximate Odds:</span>
+                    <span class="stat-value" id="hand-odds">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
