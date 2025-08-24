@@ -1,0 +1,528 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #38bdf8;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Left Panel Styles */
+.left-panel {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    backdrop-filter: blur(10px);
+    height: fit-content;
+}
+
+.control-section h3,
+.opponent-modeling h3 {
+    color: #38bdf8;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+    padding-bottom: 8px;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.preset-btn {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.preset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+}
+
+.preset-btn:active {
+    transform: translateY(0);
+}
+
+.preset-btn[data-range="clear"] {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+}
+
+.preset-btn[data-range="clear"]:hover {
+    box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
+}
+
+.percentage-control {
+    margin-bottom: 25px;
+}
+
+.percentage-control label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+#percentage-display {
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.range-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: #334155;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #38bdf8;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+.range-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #38bdf8;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+.selected-combos h4 {
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+#combo-count {
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+#selected-hands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.hand-tag {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+/* Opponent Modeling Styles */
+.opponent-modeling {
+    margin-top: 30px;
+}
+
+.player-ranges {
+    margin-bottom: 25px;
+}
+
+.player-range {
+    background: rgba(30, 41, 59, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #38bdf8;
+}
+
+.player-range h4 {
+    color: #e2e8f0;
+    margin-bottom: 8px;
+}
+
+.range-stats {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.range-stats .percentage {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+.copy-btn, .calculate-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+}
+
+.copy-btn:hover, .calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+}
+
+.equity-results {
+    background: rgba(30, 41, 59, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.equity-bar {
+    height: 30px;
+    background: #334155;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.hero-equity {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.villain-equity {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.equity-numbers {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.equity-numbers span:first-child {
+    color: #10b981;
+}
+
+.equity-numbers span:last-child {
+    color: #ef4444;
+}
+
+/* Right Panel Styles */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.grid-container, .heatmap-container {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.grid-container h3, .heatmap-container h3 {
+    color: #38bdf8;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+    padding-bottom: 8px;
+}
+
+/* Hand Grid Styles */
+.hand-grid, .heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.hand-cell, .heatmap-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    position: relative;
+}
+
+.hand-cell:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* Hand Strength Color Coding */
+.strength-1 { /* Premium */
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: white;
+}
+
+.strength-2 { /* Strong */
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+    color: white;
+}
+
+.strength-3 { /* Playable */
+    background: linear-gradient(135deg, #eab308 0%, #facc15 100%);
+    color: #0f172a;
+}
+
+.strength-4 { /* Marginal */
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    color: white;
+}
+
+.strength-5 { /* Weak */
+    background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+    color: white;
+}
+
+/* Selection States */
+.selected-hero {
+    box-shadow: 0 0 0 3px #38bdf8, inset 0 0 0 2px white !important;
+    transform: scale(1.1) !important;
+}
+
+.selected-villain {
+    box-shadow: 0 0 0 3px #ef4444, inset 0 0 0 2px white !important;
+    transform: scale(1.1) !important;
+}
+
+/* Villain Mode Styling */
+body.villain-mode .hand-cell:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* Heatmap Styles */
+.heatmap-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+.legend-color {
+    width: 20px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+.legend-color.low {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+}
+
+.legend-color.medium {
+    background: linear-gradient(135deg, #eab308 0%, #facc15 100%);
+}
+
+.legend-color.high {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+}
+
+.heatmap-cell {
+    font-size: 0.7rem;
+    cursor: default;
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.02);
+    z-index: 5;
+}
+
+.equity-low {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: white;
+}
+
+.equity-medium {
+    background: linear-gradient(135deg, #eab308 0%, #facc15 100%);
+    color: #0f172a;
+}
+
+.equity-high {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .hand-grid, .heatmap-grid {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .preset-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .hand-cell, .heatmap-cell {
+        font-size: 0.7rem;
+    }
+    
+    .heatmap-legend {
+        gap: 10px;
+    }
+    
+    .legend-item {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hand-cell, .heatmap-cell {
+        font-size: 0.6rem;
+    }
+    
+    .left-panel, .grid-container, .heatmap-container {
+        padding: 15px;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.equity-results, .heatmap-container {
+    animation: slideIn 0.5s ease;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #38bdf8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
+}
+
+/* Focus States for Accessibility */
+.preset-btn:focus,
+.copy-btn:focus,
+.calculate-btn:focus,
+.range-slider:focus {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+.hand-cell:focus {
+    outline: 2px solid #38bdf8;
+    outline-offset: 1px;
+}
