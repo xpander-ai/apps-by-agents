@@ -1,0 +1,345 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #333;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+}
+
+.left-panel, .right-panel {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.left-panel {
+    height: fit-content;
+}
+
+.controls-section h3,
+.opponent-modeling h3 {
+    color: #2a5298;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #e0e6ff;
+    padding-bottom: 8px;
+}
+
+.controls-section {
+    margin-bottom: 30px;
+}
+
+.preset-ranges h4,
+.percentage-slider h4,
+.hand-info h4,
+.equity-display h4 {
+    color: #444;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.preset-btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f0f4ff, #e0e6ff);
+    color: #2a5298;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(42, 82, 152, 0.2);
+}
+
+.preset-btn:hover {
+    background: linear-gradient(145deg, #2a5298, #1e3c72);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(42, 82, 152, 0.3);
+}
+
+.slider-container {
+    margin-bottom: 20px;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2a5298;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(42, 82, 152, 0.3);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2a5298;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(42, 82, 152, 0.3);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+#currentPercentage {
+    color: #2a5298;
+    font-weight: bold;
+}
+
+#handDetails {
+    background: #f8f9ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2a5298;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.opponent-controls {
+    margin-bottom: 20px;
+}
+
+.opponent-controls label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+#opponentRange {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e6ff;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+    color: #333;
+}
+
+#opponentRange:focus {
+    outline: none;
+    border-color: #2a5298;
+}
+
+#equityResults {
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.right-panel h3 {
+    color: #2a5298;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #e0e6ff;
+    padding-bottom: 8px;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9ff;
+    border-radius: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.legend-color.premium { background: #ff4444; }
+.legend-color.strong { background: #ff8800; }
+.legend-color.playable { background: #ffcc00; }
+.legend-color.marginal { background: #88cc00; }
+.legend-color.weak { background: #cccccc; }
+.legend-color.selected { 
+    background: #2a5298; 
+    border: 2px solid #1e3c72;
+}
+
+.hand-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+    background: #ddd;
+    padding: 2px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.hand-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+.hand-cell:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hand-cell.selected {
+    border: 3px solid #1e3c72 !important;
+    box-shadow: inset 0 0 0 2px #2a5298;
+}
+
+.hand-cell.premium { background: #ff4444; color: white; }
+.hand-cell.strong { background: #ff8800; color: white; }
+.hand-cell.playable { background: #ffcc00; color: #333; }
+.hand-cell.marginal { background: #88cc00; color: #333; }
+.hand-cell.weak { background: #cccccc; color: #666; }
+
+.equity-heatmap {
+    margin-top: 30px;
+}
+
+.heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+    background: #ddd;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.heatmap-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.heatmap-cell.equity-high { background: #00aa00; }
+.heatmap-cell.equity-medium-high { background: #66cc00; }
+.heatmap-cell.equity-medium { background: #cccc00; }
+.heatmap-cell.equity-medium-low { background: #cc6600; }
+.heatmap-cell.equity-low { background: #cc0000; }
+
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .preset-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .legend {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .hand-grid,
+    .heatmap-grid {
+        font-size: 0.7rem;
+    }
+    
+    .hand-cell {
+        font-size: 0.7rem;
+    }
+    
+    .heatmap-cell {
+        font-size: 0.6rem;
+    }
+}
