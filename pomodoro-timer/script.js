@@ -1,3 +1,4 @@
+/* DEBUG TEST - immediate check */
 (function() {
   const workDuration = 25 * 60;
   const breakDuration = 5 * 60;
