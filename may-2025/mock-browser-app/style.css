@@ -1,25 +1,55 @@
-body {
+html, body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
-.toolbar {
+
+body {
   display: flex;
-  padding: 8px;
-  background-color: #f1f1f1;
-  align-items: center;
+  flex-direction: column;
 }
-.toolbar button, .toolbar input {
-  margin-right: 4px;
-  padding: 6px;
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
 }
-.toolbar input {
-  flex: 1;
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
-.content {
-  height: calc(100vh - 42px);
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
 }
-.content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Loading animation */
+.loading-animation {
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* Tab hover effects */
+#activeTab:hover .fa-times {
+  opacity: 1;
+}
+
+.fa-times {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+/* URL bar focus effects */
+.url-bar:focus-within {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
